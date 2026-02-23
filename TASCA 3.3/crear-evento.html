@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear evento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Crear evento deportivo</h1>
+</header>
+
+<main>
+    <form action="perfil.html">
+        <label>Nombre del evento
+            <input type="text" required>
+        </label>
+
+        <label>Deporte
+            <select required>
+                <option value="">Selecciona</option>
+                <option>Fútbol</option>
+                <option>Baloncesto</option>
+                <option>Tenis</option>
+                <option>Motor</option>
+            </select>
+        </label>
+
+        <label>Fecha
+            <input type="date" required>
+        </label>
+
+        <label>Descripción
+            <textarea required minlength="15" rows="4"></textarea>
+        </label>
+
+        <button type="submit">Publicar evento</button>
+        
+        <button type="button" onclick="window.location.href='perfil.html'" style="background: transparent; border: 1px solid red; color: red; margin-top: 0.5rem;">
+            Cancelar y volver al Perfil
+        </button>
+    </form>
+</main>
+
+</body>
+</html>

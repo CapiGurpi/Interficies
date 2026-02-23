@@ -1,0 +1,147 @@
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Next Level Sports – Formularios</title>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:#0f0f0f;
+      color:#fff;
+      margin:0;
+      padding:40px;
+    }
+    h2{
+      color:#ff2e2e;
+      border-bottom:2px solid #ff2e2e;
+      padding-bottom:5px;
+    }
+    form{
+      background:#1c1c1c;
+      padding:20px;
+      border-radius:8px;
+      margin-bottom:40px;
+      max-width:500px;
+    }
+    label{
+      display:block;
+      margin-top:15px;
+      font-size:14px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      border-radius:5px;
+      border:none;
+      outline:none;
+    }
+    input[type="radio"], input[type="checkbox"]{
+      width:auto;
+      margin-right:5px;
+    }
+    .inline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:10px;
+    }
+    input[type="submit"], input[type="reset"]{
+      background:#ff2e2e;
+      color:#fff;
+      cursor:pointer;
+      margin-top:20px;
+      font-weight:bold;
+    }
+    input[type="submit"]:hover{
+      background:#e60000;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Login</h2>
+<form action="login.php" method="post">
+  <label>Usuario
+    <input type="text" name="user" required minlength="3">
+  </label>
+  <label>Contraseña
+    <input type="password" name="password" required minlength="6">
+  </label>
+  <input type="submit" value="Entrar">
+</form>
+
+<h2>Registro</h2>
+<form action="register.php" method="post">
+  <label>Nombre completo
+    <input type="text" name="name" required>
+  </label>
+  <label>Email
+    <input type="email" name="email" required>
+  </label>
+  <label>Contraseña
+    <input type="password" name="password" required minlength="6">
+  </label>
+  <label>Fecha de nacimiento
+    <input type="date" name="birthdate">
+  </label>
+  <input type="submit" value="Registrarse">
+</form>
+
+<h2>Perfil de Usuario</h2>
+<form action="profile.php" method="post">
+  <label>Biografía
+    <textarea name="bio" rows="4" placeholder="Cuéntanos algo sobre ti"></textarea>
+  </label>
+  <label>Color favorito
+    <input type="color" name="color">
+  </label>
+  <label>Edad
+    <input type="number" name="age" min="12" max="99" required>
+  </label>
+  <input type="submit" value="Guardar cambios">
+</form>
+
+<h2>Preferencias</h2>
+<form action="preferences.php" method="post">
+  <label>Deporte favorito</label>
+  <select name="sport" required>
+    <option value="">Selecciona uno</option>
+    <option value="football">Fútbol</option>
+    <option value="basket">Baloncesto</option>
+    <option value="boxing">Boxeo</option>
+  </select>
+
+  <label>Plataformas</label>
+  <div class="inline">
+    <input type="checkbox" name="platform[]" value="pc"> PC
+    <input type="checkbox" name="platform[]" value="console"> Consola
+    <input type="checkbox" name="platform[]" value="mobile"> Móvil
+  </div>
+
+  <label>Plan</label>
+  <div class="inline">
+    <input type="radio" name="plan" value="basic" required> Básico
+    <input type="radio" name="plan" value="pro"> Pro
+  </div>
+
+  <input type="submit" value="Guardar preferencias">
+</form>
+
+<h2>Contacto</h2>
+<form action="contact.php" method="post">
+  <label>Nombre
+    <input type="text" name="name" required>
+  </label>
+  <label>Email
+    <input type="email" name="email" required>
+  </label>
+  <label>Mensaje
+    <textarea name="message" rows="5" required></textarea>
+  </label>
+  <input type="submit" value="Enviar mensaje">
+  <input type="reset" value="Reset">
+</form>
+
+</body>
+</html>

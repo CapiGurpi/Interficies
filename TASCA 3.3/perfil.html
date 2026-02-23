@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><h1>Mi Perfil</h1></header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Mi Perfil</a>
+    </nav>
+    <main>
+        <div class="card" style="max-width: 600px; margin: auto;">
+            <div style="text-align: center;">
+                <img src="usuario.jpg" alt="Avatar de usuario" 
+                     style="border-radius: 50%; width: 120px; height: 120px; object-fit: cover; border: 3px solid red; margin-bottom: 10px;">
+                <h2>Panel de Control</h2>
+            </div>
+            
+            <div style="margin: 2rem 0; padding: 1rem; border: 1px dashed red; text-align: center;">
+                <p>¿Quieres organizar algo?</p>
+                <a href="crear-evento.html" style="text-decoration: none;">
+                    <button style="background: white; color: black; width: auto; padding: 0.5rem 2rem;">+ Crear nuevo evento</button>
+                </a>
+            </div>
+
+            <button onclick="window.location.href='index.html'" style="background: #333; color: white;">Cerrar Sesión</button>
+        </div>
+    </main>
+</body>
+</html>

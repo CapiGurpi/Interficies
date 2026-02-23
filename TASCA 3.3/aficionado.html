@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Next Level Sports</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ajuste extra para mostrar los dos formularios en PC */
+        @media (min-width: 1024px) {
+            .registro-container {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+        .form-title {
+            text-align: center;
+            color: red;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Únete a la Comunidad</h1>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="login.html">Ya tengo cuenta (Login)</a>
+</nav>
+
+<main>
+    <div class="registro-container">
+        
+        <section>
+            <form action="perfil.html">
+                <h2 class="form-title">Registro Aficionado</h2>
+                <label>Nombre completo
+                    <input type="text" placeholder="Tu nombre" required>
+                </label>
+                <label>Email
+                    <input type="email" required>
+                </label>
+                <label>Contraseña
+                    <input type="password" required minlength="6">
+                </label>
+                <label>Deporte favorito
+                    <select>
+                        <option>Fútbol</option>
+                        <option>Baloncesto</option>
+                        <option>Tenis</option>
+                    </select>
+                </label>
+                <button type="submit">Crear cuenta Aficionado</button>
+            </form>
+        </section>
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="login.html" style="color: red; text-decoration: none;">¿Ya tienes cuenta? Entra aquí</a>
+    </p>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Registro | Next Level Sports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Únete a Next Level</h1>
+    </header>
+
+    <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
+        <h2 style="margin-bottom: 2rem; text-align: center;">¿Cómo quieres participar?</h2>
+        
+        <div class="cards" style="width: 100%; max-width: 700px;">
+            <article class="card" style="text-align: center; cursor: pointer;" onclick="window.location.href='aficionado.html'">
+                <h3 style="color: red;">AFICIONADO</h3>
+                <p>Quiero ver eventos, comprar entradas y seguir mis deportes favoritos.</p>
+                <button>Elegir Aficionado</button>
+            </article>
+
+            <article class="card" style="text-align: center; cursor: pointer; border-left-color: white;" onclick="window.location.href='promotor.html'">
+                <h3 style="color: white;">PROMOTOR</h3>
+                <p>Quiero organizar eventos, gestionar entradas y publicar noticias.</p>
+                <button style="background-color: white; color: black;">Elegir Promotor</button>
+            </article>
+        </div>
+
+        <p style="margin-top: 2rem;">
+            <a href="login.html" style="color: gray; text-decoration: none;">Ya tengo cuenta, volver al Login</a>
+        </p>
+    </main>
+</body>
+</html>
