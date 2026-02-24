@@ -97,14 +97,14 @@ button {
 
 /* --- MEDIA QUERIES (3 MEDIDAS) --- */
 
-/* Tablet (desde 600px) */
+/* Tablet*/
 @media (min-width: 600px) {
     header h1 { font-size: 2.5rem; }
     form { max-width: 500px; }
     nav a { font-size: 1rem; margin: 0 20px; }
 }
 
-/* PC (desde 1024px) */
+/* PC */
 @media (min-width: 1024px) {
     main { padding: 3rem; }
     .card:hover {
