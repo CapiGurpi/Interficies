@@ -4,7 +4,7 @@ class Database {
     private $host = "localhost";
     private $user = "root";
     private $pass = "";
-    private $db   = "next_level_sports"; // El nombre que pusiste en phpMyAdmin
+    private $db   = "next_level_sports"; // Le ponemos este nombre porque nuestra base de datos se llama así por si lo veis luego.
     public $conn;
 
     public function getConnection() {

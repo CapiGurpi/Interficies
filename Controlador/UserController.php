@@ -1,7 +1,7 @@
 
 <?php
 // controller/UserController.php
-require_once '../model/db.php';
+require_once '../Modelo/NextLvlBase.php';
 
 class UserController {
     private $connection;

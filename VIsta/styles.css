@@ -75,10 +75,11 @@ button {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
     max-width: 1200px;
     margin: 2rem auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
 .card {
@@ -103,12 +104,24 @@ button {
     form { max-width: 500px; }
     nav a { font-size: 1rem; margin: 0 20px; }
 }
-
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 /* PC */
 @media (min-width: 1024px) {
     main { padding: 3rem; }
     .card:hover {
         transform: scale(1.03);
         transition: 0.3s;
+    }
+}
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    header {
+        text-align: center;
     }
 }
