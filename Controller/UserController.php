@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 // controller/UserController.php
 require_once '../Model/NextLvlBase.php';
 require_once '../Model/Aficionado.php';
@@ -57,7 +58,10 @@ class UserController
             $conn = $db->getConnection();
 
             $aficionado->register($FanPwdCon, $conn);
+        }else {
+
         }
+        exit();
 
     }
 

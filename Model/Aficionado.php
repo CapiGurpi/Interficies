@@ -34,6 +34,7 @@ public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
         }
  
         if ($this->FanPwd === $FanPwdCon && $exist === 0) {
+             echo "<span>hola.</span>";
             $insert = $conn->query("INSERT INTO Aficionado (Name, Pwd, PwdCon, Email, Sport )
                 VALUES ('$this->FanName', '$this->FanEmail', '$this->FanPwd','$this->FanPwdCon', '$this->FanSport')");
             header('Location: ../Vista/index.html');
