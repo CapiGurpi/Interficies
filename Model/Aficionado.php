@@ -22,7 +22,7 @@ public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
         $conn->query("CALL sp_comprovar_email('$this->FanEmail', @result)");
         $result = $conn->query("SELECT @result AS exist");
         $row = $result->fetch_assoc();
-        $exist = intval($row["exist"]); // 1 o 0
+        $exist = intval($row["exist"]);
  
         if ($exist === 1) {
             echo "<span>El correo electrónico ya está registrado. Inténtelo con otro.</span>";

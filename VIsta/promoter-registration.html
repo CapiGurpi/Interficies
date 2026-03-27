@@ -40,24 +40,24 @@
             <form action="../Controller/UserController.php" method="post" style="border-top: 5px solid white;">
                 <h2 class="form-title">Registro Promotor</h2>
                 <label>Nombre de usuario
-                    <input type="text" required>
+                    <input type="text" name="ProName" required>
                 </label>
                 <label>Correo Electrónico
-                    <input type="text" required>
+                    <input type="text" name="ProEmail" required>
                 </label>
                 <label>Dirección
-                    <input type="text" required>
+                    <input type="text" name="ProDirection" required>
                 </label>
                 <label>Contraseña
-                    <input type="password" required minlength="6">
+                    <input type="password" name="ProPwd" minlength="6">
                 </label>
                 <label>Confirmar Contraseña
-                    <input type="password" required minlength="6">
+                    <input type="password" name="ProPwdCon" minlength="6">
                 </label>
                 <label>Número Tarjeta
-                    <input type="text"   maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
+                    <input type="text" name="ProCreditCard"  maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
                 </label>
-                <button type="submit" style="background-color: white; color: black;"value="registerp" name="registerp">Registrar como Promotor</button>
+                <button type="submit" style="background-color: white; color: black;" value="registerp" name="registerp">Registrar como Promotor</button>
             </form>
         </section>
 
