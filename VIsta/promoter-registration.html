@@ -37,16 +37,13 @@
 
 <main>
 <section>
-            <form action="profile.html" style="border-top: 5px solid white;">
+            <form action="../Controller/UserController.php" method="post" style="border-top: 5px solid white;">
                 <h2 class="form-title">Registro Promotor</h2>
                 <label>Nombre de usuario
                     <input type="text" required>
                 </label>
-                <label>Contraseña
-                    <input type="text" required>
-                </label>
                 <label>Correo Electrónico
-                    <input type="email" required>
+                    <input type="text" required>
                 </label>
                 <label>Dirección
                     <input type="text" required>
@@ -60,7 +57,7 @@
                 <label>Número Tarjeta
                     <input type="text"   maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
                 </label>
-                <button type="submit" style="background-color: white; color: black;">Registrar como Promotor</button>
+                <button type="submit" style="background-color: white; color: black;"value="registerp" name="registerp">Registrar como Promotor</button>
             </form>
         </section>
 

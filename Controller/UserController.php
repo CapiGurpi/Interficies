@@ -4,6 +4,7 @@ session_start();
 // controller/UserController.php
 require_once '../Model/NextLvlBase.php';
 require_once '../Model/Aficionado.php';
+require_once '../Model/Promotor.php';
 
 // Scanner sc =  new Scanner();
 // sc.nextLine();
@@ -13,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userController = new UserController();
  
     if (isset($_POST['register'])) {
-          echo "<span>1.</span>";
         $userController->register();
     }
  
@@ -42,10 +42,9 @@ class UserController
 {
 
     public function register() {
-           echo "<span>2.</span>";
         require_once '../Model/NextLvlBase.php';
         if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd']) && !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {   
-        $FanName = $_POST['FanName'];
+            $FanName = $_POST['FanName'];
             $FanEmail = $_POST['FanEmail'];
             $FanPwd = $_POST['FanPwd'];
             $FanPwdCon = $_POST['FanPwdCon'];
@@ -64,7 +63,26 @@ class UserController
 
     }
     public function registerp(){
+        require_once '../Model/NextLvlBase.php';
+        if (!empty($_POST['ProName']) && !empty($_POST['ProPwd']) && !empty($_POST['ProPwdCon']) && !empty($_POST['ProEmail']) && !empty($_POST['ProDirection']) && !empty($_POST['ProCreditCard'])) {   
+            $ProName = $_POST['ProName'];
+            $ProPwd = $_POST['ProPwd'];
+            $ProPwdCon = $_POST['ProPwdCon'];
+            $ProEmail = $_POST['ProEmail'];
+            $ProDirection = $_POST['ProDirection'];
+            $ProCreditCard = $_POST['ProCreditCard  '];
 
+
+            $promotor = new Promotor ($ProName,$ProPwd,$ProPwdCon,$ProEmail,$ProDirection,$ProCreditCard);
+
+            $db = new Database();
+            $conn = $db->getConnection();
+
+            $promotor->registerp($ProPwdCon, $conn);
+        }else {
+
+        }
+        exit();
     }
 
     public function login() {
