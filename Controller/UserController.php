@@ -9,15 +9,16 @@ require_once '../Model/Aficionado.php';
 // sc.nextLine();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 
+
     $userController = new UserController();
  
     if (isset($_POST['register'])) {
+          echo "<span>1.</span>";
         $userController->register();
     }
  
     if (isset($_POST['register-promotor'])) {
-        $userController->register();
+        $userController->registerp();
     }
  
     if (isset($_POST['login'])) {
@@ -39,14 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 class UserController
 {
-    private $connection;
-
-    public function __construct() {}
 
     public function register() {
+           echo "<span>2.</span>";
         require_once '../Model/NextLvlBase.php';
-        if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd'])&& !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {
-            $FanName = $_POST['FanName'];
+        if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd']) && !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {   
+        $FanName = $_POST['FanName'];
             $FanEmail = $_POST['FanEmail'];
             $FanPwd = $_POST['FanPwd'];
             $FanPwdCon = $_POST['FanPwdCon'];
@@ -62,6 +61,9 @@ class UserController
 
         }
         exit();
+
+    }
+    public function registerp(){
 
     }
 

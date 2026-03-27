@@ -39,7 +39,7 @@
     <div class="registro-container">
         
         <section>
-            <form action="../Controller/UserController.php">
+            <form action="../Controller/UserController.php" method="post">
                 <h2 class="form-title">Registro Aficionado</h2>
                 <label>Nombre completo
                     <input type="text" name="FanName" placeholder="Tu nombre" required>
@@ -73,7 +73,7 @@
                         <option>Natación</option>
                     </select>
                 </label>
-                <button type="submit" value="register">Crear cuenta Aficionado</button>
+                <button type="submit" value="register" name="register">Crear cuenta Aficionado</button>
             </form>
         </section>
     </div>
