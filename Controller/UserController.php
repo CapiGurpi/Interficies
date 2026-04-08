@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userController->login();
     }
 
+    if (isset($_POST['loginp'])) {
+        $userController->loginp();
+    }
+    
     if (isset($_POST['update'])) {
         $userController->update();
     }
@@ -88,8 +92,66 @@ class UserController
         
         require_once '../Model/NextLvlBase.php';
 
+        if (!empty($_POST['email']) && !empty($_POST['password'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $db = new Database();
+            $conn = $db->getConnection();
+
+            $conn->query("CALL sp_login('$email', '$password', @result)");
+            $result = $conn->query("SELECT @result AS exist");
+            $row = $result->fetch_assoc();
+            $exist = intval($row["exist"]); // 1 o 0
+
+            if ($exist === 1) {
+                header('Location: ../view/index.php');
+                exit();
+            } else {
+                // $error = "Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.";
+                // header("Location: index.php?error=" . urlencode($error));
+                // exit();
+            }
+        } else {
+            // $error = "Por favor, completa todos los campos.";
+            // header("Location: register-lector.php?error=" . urlencode($error));
+            //    exit;
+        }
+        exit();
     }
 
+
+    public function loginp(){
+
+    require_once '../Model/NextLvlBase.php';
+
+        if (!empty($_POST['emailp']) && !empty($_POST['passwordp'])) {
+            $emailp = $_POST['emailp'];
+            $passwordp = $_POST['passwordp'];
+
+            $db = new Database();
+            $conn = $db->getConnection();
+
+            $conn->query("CALL sp_loginp('$emailp', '$passwordp', @result)");
+            $result = $conn->query("SELECT @result AS exist");
+            $row = $result->fetch_assoc();
+            $exist = intval($row["exist"]); // 1 o 0
+
+            if ($exist === 1) {
+                header('Location: ../view/index.php');
+                exit();
+            } else {
+                // $error = "Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.";
+                // header("Location: index.php?error=" . urlencode($error));
+                // exit();
+            }
+        } else {
+            // $error = "Por favor, completa todos los campos.";
+            // header("Location: register-lector.php?error=" . urlencode($error));
+            //    exit;
+        }
+        exit();
+    }
     public function logout() {}
 
     public function update() {}

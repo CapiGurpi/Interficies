@@ -53,3 +53,35 @@ FROM aficionado;
 
 SELECT *
 FROM promotor;
+
+DELIMITER //
+CREATE PROCEDURE sp_login(
+	IN emailP varchar(50),
+    IN passwordP varchar(100),
+    OUT valido boolean
+)
+BEGIN
+	SELECT EXISTS(
+		SELECT *
+        FROM aficionado
+        WHERE email = emailP
+        AND password = passwordP
+	) INTO valido;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_loginp(
+	IN emailP varchar(50),
+    IN passwordP varchar(100),
+    OUT valido boolean
+)
+BEGIN
+	SELECT EXISTS(
+		SELECT *
+        FROM promotor
+        WHERE email = emailP
+        AND password = passwordP
+	) INTO valido;
+END //
+DELIMITER ;
