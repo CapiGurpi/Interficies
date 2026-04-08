@@ -121,3 +121,65 @@ body {
     color: #ccc;
     font-size: 0.85rem;
 }
+/* Estilos para el Menú */
+.main-nav {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    border-bottom: 2px solid red; /* Línea roja distintiva de tu marca */
+    position: sticky; /* Se queda arriba al bajar con el ratón */
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.nav-logo span {
+    color: red;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+/* Efecto al pasar el ratón */
+.nav-links a:hover {
+    color: red;
+}
+
+/* Clase para resaltar la página actual */
+.nav-links a.active {
+    color: red;
+    border-bottom: 2px solid red;
+    padding-bottom: 5px;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .nav-links {
+        gap: 15px;
+    }
+}
