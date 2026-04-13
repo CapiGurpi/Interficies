@@ -4,7 +4,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: black;
+    background: linear-gradient(180deg, #2c0f0f 0%, #7a1f1f 40%, #d94c2a 100%);    
     color: #ffffff;
     line-height: 1.6;
 }
