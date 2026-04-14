@@ -60,13 +60,31 @@ body {
 /* TEXTO DEBAJO DEL VIDEO */
 .video-info {
     padding: 15px;
+    color:red;
+    text-decoration: none;
+    
+    font-weight: 500;
+    letter-spacing: 1.5px; 
+    font-size: 18px; 
+    
+    display: inline-block;
+    padding-bottom: 2px;
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: all 0.3s ease;
 }
 
 .video-info h3 {
     color: red;
     font-size: 1.1rem;
-    margin-bottom: 8px;
     text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1.5px; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: all 0.3s ease;
 }
 
 .video-info p {
@@ -152,12 +170,19 @@ body {
 }
 
 .nav-links a {
-    text-decoration: none;
     color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: 0.3s;
+    text-decoration: none;
+    
+    font-weight: 500;
+    letter-spacing: 1.5px; 
+    font-size: 18px; 
+    
+    display: inline-block;
+    padding-bottom: 2px;
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: all 0.3s ease;
 }
 
 /* Efecto al pasar el ratón */

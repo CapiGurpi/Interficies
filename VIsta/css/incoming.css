@@ -12,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 40px 20px;
+    background: radial-gradient(circle, #5c0a0a 0%, #1a0202 80%, #000000 100%);
 }
 
 .news-detail {
@@ -83,7 +84,6 @@ body {
 
 .btn-back {
     display: inline-block;
-    margin-top: 30px;
     padding: 10px 25px;
     border: 1px solid red;
     color: red;
@@ -101,11 +101,10 @@ body {
 
 .btn-backo {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 2rem;
+    padding: 10px 25px;
     background: transparent;
     color: red;
-    border: 2px solid red;
+    border: 1px solid red;
     border-radius: 6px;
     text-transform: uppercase;
     cursor: pointer;

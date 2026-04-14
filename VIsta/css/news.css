@@ -4,6 +4,7 @@
 body {
     margin: 0;
     font-family: 'Oswald', 'Impact', sans-serif;
+    background: radial-gradient(circle, #5c0a0a 0%, #1a0202 80%, #000000 100%);
     background-color: black;
     color: #ffffff;
     line-height: 1.6;
@@ -103,7 +104,6 @@ main {
 
 .btn-back {
     display: inline-block;
-    margin-top: 1rem;
     padding: 0.8rem 2rem;
     background: transparent;
     color: red;
@@ -124,7 +124,6 @@ main {
 
 .btn-backo {
     display: inline-block;
-    margin-top: 1rem;
     padding: 0.8rem 2rem;
     background: transparent;
     color: red;
