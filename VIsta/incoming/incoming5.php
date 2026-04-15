@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Level Sports - Noticias</title>
+    <link rel="stylesheet" href="../css/incoming.css">
+</head>
+<section class="news-detail">
+    <header>
+        <h2>Motor: Gran Premio de Jerez</h2>
+        <div class="meta-info">Fecha: Abril 2024 | Circuito de Jerez</div>
+    </header>
+    <div class="detail-content">
+        <p>La catedral del motociclismo español abre sus puertas para una carrera que promete adelantamientos al límite en la mítica curva Jorge Lorenzo.</p>
+        <div class="stats-box">
+            <h4>Datos del Circuito:</h4>
+            <ul>
+                <li><span style="color: #ff3131;">Longitud: </span>  4.423 metros</li>
+                <li><span style="color: #ff3131;">Curvas: </span>  13 (5 izq / 8 der)</li>
+                <li><span style="color: #ff3131;">Vmax: </span>  300 km/h aprox.</li>
+                <li><span style="color: #ff3131;">Récord: </span>  1:36.170</li>
+            </ul>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem;">
+            <a href="incoming4.php" class="btn-back">←</a>
+            
+            <a href="../news.php" class="btn-backo">
+                    Volver a las noticias
+                </a>
+        
+            <a href="incoming6.php" class="btn-back">
+                    →
+                </a>
+        </div> 
+</section>

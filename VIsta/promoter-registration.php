@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Next Level Sports</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Ajuste extra para mostrar los dos formularios en PC */
+        @media (min-width: 1024px) {
+            .registro-container {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+        .form-title {
+            text-align: center;
+            color: red;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Únete a la Comunidad</h1>
+</header>
+
+<nav>
+    <a href="index.php">Inicio</a>
+    <a href="role-selection2.php">Ya tengo cuenta (Login)</a>
+</nav>
+
+<main>
+<section>
+            <form action="../Controller/UserController.php" method="post" style="border-top: 5px solid white;">
+                <h2 class="form-title">Registro Promotor</h2>
+                <label>Nombre de usuario
+                    <input type="text" name="ProName" required>
+                </label>
+                <label>Correo Electrónico
+                    <input type="text" name="ProEmail" required>
+                </label>
+                <label>Dirección
+                    <input type="text" name="ProDirection" required>
+                </label>
+                <label>Contraseña
+                    <input type="password" name="ProPwd" minlength="6">
+                </label>
+                <label>Confirmar Contraseña
+                    <input type="password" name="ProPwdCon" minlength="6">
+                </label>
+                <label>Número Tarjeta
+                    <input type="text" name="ProCreditCard"  maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
+                </label>
+                <button type="submit" style="background-color: white; color: black;" value="registerp" name="registerp">Registrar como Promotor</button>
+            </form>
+        </section>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="role-selection2.php" style="color: white; text-decoration: none;">¿Ya tienes cuenta? Entra aquí</a>
+    </p>
+</main>
+
+</body>
+</html>

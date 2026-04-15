@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Evento - Meeting de Atletismo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header><h1>Información del Evento</h1></header>
+    
+    <nav>
+        <a href="../index.php">Inicio</a>
+        <a href="../profile.php">Mi Perfil</a>
+    </nav>
+
+    <main>
+        <article class="card" style="max-width: 800px; margin: auto;">
+            <img src="../assets/images/VALLEHERMOSO.jpg" alt="Pista de Atletismo">
+            
+            <h2>Meeting de Atletismo</h2>
+            
+            <p><strong>Deporte:</strong> Atletismo </p>
+            <p><strong>Ubicación:</strong> Estadio Vallehermoso, Madrid </p>
+            
+            <p><strong>Descripción:</strong> 
+                Velocidad, saltos y lanzamientos. Los mejores atletas de Europa compiten por batir los récords vigentes en una jornada dedicada al deporte base.
+            </p>
+            
+            <a href="../purchase/athletics-ticket-purchase.php" style="text-decoration: none;">
+                <button>Comprar Entradas</button>
+            </a>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem;">
+                <a href="./general-events.php" style="color: gray; text-decoration: none;">← Volver al listado</a>
+                
+                <a href="swimming-cup-event.php" style="color: white; text-decoration: none;">
+                    Ver siguiente evento (Natación) →
+                </a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Evento - MotoGP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header><h1>Información del Evento</h1></header>
+    
+    <nav>
+        <a href="../index.php">Inicio</a>
+        <a href="../profile.php">Mi Perfil</a>
+    </nav>
+
+    <main>
+        <article class="card" style="max-width: 800px; margin: auto;">
+            <img src="../assets/images/swimming-competition.jpg" alt="Nadadores en la Competición">
+            
+            <h2>Copa de Natación</h2>
+            
+            <p><strong>Deporte:</strong> Natación </p>
+            <p><strong>Ubicación:</strong> Centro Natación M-86, Madrid</p>
+            
+            <p><strong>Descripción:</strong> 
+                Competición de alto nivel en 100m y 200m libres. Ven a apoyar a los nadadores locales en la final de la Copa de Invierno.
+            </p>
+            
+            <a href="../purchase/swimming-ticket-purchase.php" style="text-decoration: none;">
+                <button>Comprar Entradas</button>
+            </a>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem;">
+                <a href="./general-events.php" style="color: gray; text-decoration: none;">← Volver al listado</a>
+                
+                <a href="cycling-classic-event.php" style="color: white; text-decoration: none;">
+                    Ver siguiente evento (Ciclismo) →
+                </a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
