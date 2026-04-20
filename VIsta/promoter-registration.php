@@ -6,7 +6,6 @@
     <title>Registro | Next Level Sports</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Ajuste extra para mostrar los dos formularios en PC */
         @media (min-width: 1024px) {
             .registro-container {
                 display: flex;

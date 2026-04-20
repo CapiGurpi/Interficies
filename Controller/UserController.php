@@ -100,23 +100,20 @@ class UserController
             $db = new Database();
             $conn = $db->getConnection();
 
-            // 1. Determinar qué procedimiento usar
+
             $procedure = ($userType === 'Promotor') ? 'sp_loginp' : 'sp_login';
 
-            // 2. Ejecutar el procedimiento
-            // Usamos variables de sesión de MySQL (@result) para capturar el OUT
             $conn->query("CALL $procedure('$email', '$password', @result)");
             while ($conn->more_results() && $conn->next_result()) {
                 $conn->store_result();
             }
 
-            // 3. Obtener el resultado de esa variable
             $res = $conn->query("SELECT @result AS exist");
             $row = $res->fetch_assoc();
             $exist = intval($row['exist']);
 
             if ($exist === 1) {
-                // Guardar datos en sesión si es necesario antes de redirigir
+
                 $_SESSION['user'] = $email;
                 $_SESSION['user_type'] = $userType;
 
@@ -131,7 +128,7 @@ class UserController
                 }
 
                 header('Location: ../Vista/index.php');
-                exit(); // Importante para detener la ejecución
+                exit(); 
             } else {
                 $_SESSION['login_error'][] = "Usuario o contraseña incorrectos";
                 header("Location: ../Vista/fan-login.php");

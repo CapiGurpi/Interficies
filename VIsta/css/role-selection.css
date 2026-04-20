@@ -7,7 +7,6 @@
 
 body {
     font-family: 'Oswald', sans-serif;
-    /* Tu fondo radial deportivo */
     background: radial-gradient(circle, #5c0a0a 0%, #1a0202 60%, #000000 100%);
     color: white;
     min-height: 100vh;

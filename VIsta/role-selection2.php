@@ -15,7 +15,6 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     <title>Next Level Sports | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTO ES EL CSS DENTRO DEL HTML */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Oswald', sans-serif;
@@ -45,11 +44,10 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
         }
         .card:hover { transform: translateY(-10px); }
         .card h3 { color: red; margin-bottom: 15px; font-size: 1.6rem; }
-        
-        /* BOTÓN MEJORADO */
+
         .btn-visual { 
             background: linear-gradient(90deg, #ff0000 0%, #b30000 100%); 
-            height: 45px; /* Más alto */
+            height: 45px; 
             width: 100%; 
             margin-top: 25px; 
             border-radius: 4px;
@@ -65,7 +63,6 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
         }
 
-        /* Efecto de brillo que cruza el botón al pasar el ratón */
         .btn-visual::after {
             content: '';
             position: absolute;
@@ -95,7 +92,7 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     <nav><a href="index.php">Inicio</a><a href="profile.php">Mi Perfil</a></nav>
     <main>
         <?php 
-        // Debug: Check session value
+
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { 
         ?>
         <h2 class="main-title">Ya estás conectado</h2>

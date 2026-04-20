@@ -267,8 +267,6 @@ footer a {
     background: #cc0000;
 }
 
-
-/* Tablet*/
 @media (min-width: 600px) {
     header h1 { font-size: 2.5rem; }
     form { max-width: 500px; }
@@ -344,34 +342,33 @@ button {
     transition: all 0.3s ease;
 }
 
-/* Contenedor de error mejorado para el diseño oscuro */
 .error-container {
     display: flex;
     align-items: center;
     gap: 12px;
     width: 100%;
-    max-width: 400px; /* Un poco más ancho para que respire */
+    max-width: 400px;
     margin: 15px auto;
     padding: 12px 16px;
     border-radius: 8px;
-    background: rgba(255, 0, 0, 0.1); /* Fondo oscuro rojizo transparente */
-    border: 1px solid red; /* Borde rojo sólido para que resalte */
-    color: #ff4d4d; /* Texto rojo brillante para lectura fácil */
+    background: rgba(255, 0, 0, 0.1); 
+    border: 1px solid red; 
+    color: #ff4d4d; 
     font-size: 14px;
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.5px;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); /* Sutil resplandor rojo */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
 }
 
 .error-icon {
     background: red;
-    color: black; /* El icono en negro sobre rojo destaca más */
+    color: black;
     width: 20px;
     height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px; /* Cuadrado redondeado encaja mejor que círculo */
+    border-radius: 4px; 
     font-weight: bold;
     flex-shrink: 0;
     font-size: 12px;

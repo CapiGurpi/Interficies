@@ -1,11 +1,10 @@
 :root {
-    /* Colores oficiales Next Level */
-    --accent: #ff0000;          /* Rojo principal */
-    --accent-hover: #cc0000;    /* Rojo oscuro para hover */
+    --accent: #ff0000;          
+    --accent-hover: #cc0000;    
     --text: #ffffff;
-    --bg-dark: #000000;         /* Fondo puro */
-    --surface: #1a1a1a;         /* Gris oscuro de las tarjetas */
-    --surface-light: #252525;   /* Para contrastes sutiles */
+    --bg-dark: #000000;         
+    --surface: #1a1a1a;         
+    --surface-light: #252525;
     
     --header-height-desktop: 80px;
     --header-height-tablet: 70px;
@@ -23,12 +22,10 @@ body {
     overflow-y: auto;
     min-height: 100%;
     color: var(--text);
-    /* Tipografía más agresiva y deportiva */
     font-family: 'Oswald', 'Impact', sans-serif; 
     background-color: var(--bg-dark);
 }
 
-/* HEADER ESTILO NEXT LEVEL */
 .header-gruop {
     display: flex;
     align-items: center;
@@ -36,7 +33,7 @@ body {
     background-color: var(--bg-dark);
     padding: 10px 50px;
     gap: 16px;
-    border-bottom: 2px solid var(--accent); /* Línea roja de marca */
+    border-bottom: 2px solid var(--accent);
 }
 
 .header-gruop img {
@@ -62,7 +59,6 @@ body {
     gap: 15px;
 }
 
-/* BOTONES ESTILO DEPORTIVO */
 .btn {
     width: 150px;
     min-height: 45px;
@@ -72,21 +68,19 @@ body {
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border-radius: 4px; /* Menos redondeado, más técnico */
+    border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.2s ease;
     letter-spacing: 1px;
 }
 
-/* Botón Iniciar Sesión (Blanco) */
 .btn-sesion {
     color: black;
     background-color: white;
     border: 2px solid white;
 }
 
-/* Botón Registro (Rojo) */
 .btn-register {
     color: white;
     background-color: var(--accent);
@@ -98,7 +92,6 @@ body {
     filter: brightness(0.9);
 }
 
-/* MAIN CONTAINER */
 main {
     width: min(1200px, 95vw);
     margin: 0 auto;
@@ -109,7 +102,6 @@ main {
     padding: 40px 0;
 }
 
-/* HERO SECTION */
 .hero {
     text-align: center;
     margin-bottom: 50px;
@@ -130,7 +122,6 @@ main {
     line-height: 1.5;
 }
 
-/* FOOTER */
 footer {
     background-color: #050505;
     color: #555;
@@ -140,7 +131,6 @@ footer {
     border-top: 1px solid #1a1a1a;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
     .header-gruop {
         padding: 10px 20px;
@@ -152,13 +142,11 @@ footer {
     }
 }
 
-/* ... resto del root anterior ... */
-
 :root {
     --accent: #ff0000;
     --text: #ffffff;
     --bg-dark: #000000;
-    --header-height-desktop: 100px; /* Un poco más alto para que respire */
+    --header-height-desktop: 100px;
 }
 
 html,
@@ -168,25 +156,21 @@ body {
     min-height: 100%;
     color: var(--text);
     font-family: 'Oswald', 'Impact', sans-serif;
-    
-    /* SOLUCIÓN AL FONDO: Menos opacidad (0.4) para que la foto brille más */
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
                 url("../assets/images/mw-1920.jpg") center / cover no-repeat;
-    background-attachment: scroll; /* Cambiado de fixed a scroll para evitar desenfoque */
+    background-attachment: scroll;
 }
 
-/* Estilos para el Footer de Next Level Sports */
 .site-footer {
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro con ligera transparencia */
+    background-color: rgba(0, 0, 0, 0.9); 
     color: var(--text);
     padding: 40px 20px 20px;
     text-align: center;
-    border-top: 3px solid var(--accent); /* Línea roja característica */
+    border-top: 3px solid var(--accent); 
     margin-top: auto;
     font-family: 'Oswald', sans-serif;
 }
 
-/* Línea horizontal decorativa */
 .site-footer hr {
     border: 0;
     height: 1px;
@@ -197,7 +181,6 @@ body {
     margin-right: auto;
 }
 
-/* Título del Mapa Web */
 .site-footer h3 {
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -206,18 +189,16 @@ body {
     font-size: 1.2rem;
 }
 
-/* Lista de enlaces (Mapa Web) */
 .site-footer ul {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px; /* Espaciado entre enlaces */
+    gap: 30px; 
     margin-bottom: 30px;
 }
 
-/* Estilo de los enlaces individuales */
 .site-footer ul li a {
     color: #bbb;
     text-decoration: none;
@@ -228,20 +209,18 @@ body {
 }
 
 .site-footer ul li a:hover {
-    color: var(--accent); /* Cambio a rojo al pasar el ratón */
+    color: var(--accent); 
 }
 
-/* Texto de Copyright y Accesibilidad */
 .site-footer p {
     font-size: 0.8rem;
     color: #666;
     letter-spacing: 1px;
 }
 
-/* TIRA DE NAVEGACIÓN TRANSPARENTE */
 .sub-menu {
-    background-color: rgba(0, 0, 0, 0.3); /* Muy transparente */
-    backdrop-filter: blur(5px);           /* Opcional: difumina un poco el fondo para leer mejor */
+    background-color: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(5px);
     padding: 10px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -250,7 +229,7 @@ body {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 40px; /* Espacio entre botones */
+    gap: 40px; 
     margin: 0;
     padding: 0;
 }
@@ -268,7 +247,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el ratón: se vuelve rojo como tus botones principales */
 .sub-menu ul li a:hover {
     background-color: var(--accent);
     color: white;

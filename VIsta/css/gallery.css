@@ -1,4 +1,4 @@
-/* RESET BÁSICO */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,6 @@ body {
     background-color: #000;
 }
 
-/* TÍTULO DE SECCIÓN */
 .section-title {
     color: white;
     text-transform: uppercase;
@@ -20,7 +19,6 @@ body {
     font-size: 1.8rem;
 }
 
-/* REJILLA DE VIDEOS */
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -29,7 +27,6 @@ body {
     margin: 0 auto;
 }
 
-/* CADA BLOQUE DE VIDEO */
 .video-item {
     background-color: #111;
     border-radius: 10px;
@@ -43,7 +40,6 @@ body {
     border-color: red;
 }
 
-/* CONTENEDOR PARA QUE EL VIDEO SEA 16:9 */
 .video-container {
     position: relative;
     width: 100%;
@@ -57,7 +53,6 @@ body {
     border: none;
 }
 
-/* TEXTO DEBAJO DEL VIDEO */
 .video-info {
     padding: 15px;
     color:red;
@@ -103,15 +98,15 @@ body {
 }
 
 .video-item {
-    background: #1a1a1a; /* Gris oscuro igual a tus tarjetas */
+    background: #1a1a1a;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #333; /* Borde sutil inicial */
+    border: 1px solid #333;
     transition: 0.3s;
 }
 
 .video-item:hover {
-    border-color: red; /* Brillo rojo al pasar el ratón */
+    border-color: red; 
 }
 
 .video-container {
@@ -139,15 +134,15 @@ body {
     color: #ccc;
     font-size: 0.85rem;
 }
-/* Estilos para el Menú */
+
 .main-nav {
     background-color: #000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    border-bottom: 2px solid red; /* Línea roja distintiva de tu marca */
-    position: sticky; /* Se queda arriba al bajar con el ratón */
+    border-bottom: 2px solid red; 
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -185,19 +180,16 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el ratón */
 .nav-links a:hover {
     color: red;
 }
 
-/* Clase para resaltar la página actual */
 .nav-links a.active {
     color: red;
     border-bottom: 2px solid red;
     padding-bottom: 5px;
 }
 
-/* Responsivo para móviles */
 @media (max-width: 768px) {
     .main-nav {
         flex-direction: column;

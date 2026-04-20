@@ -1,6 +1,5 @@
 ﻿<?php
 session_start();
-// Reset session if requested
 if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     unset($_SESSION['user']);
     header('Location: index.php');

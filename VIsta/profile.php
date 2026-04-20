@@ -6,7 +6,6 @@ if (isset($_SESSION['user_type']) && strtolower(trim($_SESSION['user_type'])) ==
     exit();
 }
 
-// Si no hay usuario identificado, no mostramos información del perfil.
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 $userInfo = isset($_SESSION['user_info']) ? $_SESSION['user_info'] : null;
@@ -42,7 +41,6 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
     <title>Mi Perfil | Next Level Sports</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reutilizamos tu base de estilos para que todo combine */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -63,7 +61,6 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
 
         main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
 
-        /* Contenedor de la Plantilla */
         .profile-card {
             background: #111;
             width: 100%;
@@ -90,7 +87,6 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
         .profile-header h2 { text-transform: uppercase; color: white; font-size: 1.8rem; }
         .profile-header p { color: red; font-weight: bold; letter-spacing: 1px; }
 
-        /* Sección de Datos */
         .profile-info {
             background: rgba(255, 255, 255, 0.05);
             padding: 20px;
@@ -119,7 +115,6 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
             outline: none;
         }
 
-        /* Botones Estilo Next Level */
         .btn-action {
             display: block;
             width: 100%;
