@@ -1,10 +1,11 @@
 <?php
-// model/db.php
+require_once __DIR__ . '/../Vista/config.php';
+
 class Database {
-    private $host = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $db   = "trabajotrans"; // Le ponemos este nombre porque nuestra base de datos se llama así por si lo veis luego.
+    private $host = DB_HOST;
+    private $user = DB_USER;
+    private $pass = DB_PASS;
+    private $db   = DB_NAME;
     public $conn;
 
     public function getConnection() {

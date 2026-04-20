@@ -1,12 +1,12 @@
 <?php
-session_start();
+require_once __DIR__ . '/auth.php';
 
-$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
-$userInfo = isset($_SESSION['user_info']) ? $_SESSION['user_info'] : null;
+$user = current_user();
+$userType = current_user_type();
+$userInfo = current_user_info();
 $maskedCard = null;
 
-if (!$userInfo && $user && strtolower(trim($userType)) === 'promotor') {
+if (!$userInfo && $user && is_promotor()) {
     require_once __DIR__ . '/../Model/NextLvlBase.php';
     $db = new Database();
     $conn = $db->getConnection();
@@ -21,8 +21,7 @@ if (!$userInfo && $user && strtolower(trim($userType)) === 'promotor') {
 }
 
 if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($userInfo['tarjeta'])) {
-    $cleanCard = preg_replace('/\D+/', '', $userInfo['tarjeta']);
-    $maskedCard = str_repeat('*', max(0, strlen($cleanCard) - 4)) . substr($cleanCard, -4);
+    $maskedCard = mask_credit_card($userInfo['tarjeta']);
 }
 ?>
 <!DOCTYPE html>

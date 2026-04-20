@@ -1,14 +1,14 @@
 ﻿<?php
-session_start();
+require_once __DIR__ . '/auth.php';
 
-if (isset($_SESSION['user_type']) && strtolower(trim($_SESSION['user_type'])) === 'promotor') {
+if (is_promotor()) {
     header('Location: profile_promotor.php');
     exit();
 }
 
-$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
-$userInfo = isset($_SESSION['user_info']) ? $_SESSION['user_info'] : null;
+$user = current_user();
+$userType = current_user_type();
+$userInfo = current_user_info();
 $maskedCard = null;
 
 if (!$userInfo && $user) {
@@ -16,15 +16,18 @@ if (!$userInfo && $user) {
     $db = new Database();
     $conn = $db->getConnection();
     $email = $conn->real_escape_string($user);
-    $userTypeNormalized = strtolower(trim($userType));
 
-    if ($userTypeNormalized === 'aficionado') {
+    if (is_aficionado()) {
         $result = $conn->query("SELECT Name AS nombre, Email AS email, Pwd AS pwd, PwdCon AS pwdcon, Sport AS deporte, 'Aficionado' AS tipo FROM aficionado WHERE Email = '$email'");
-        if (!empty($result) && $result->num_rows === 1) {
+        if ($result && $result->num_rows === 1) {
             $userInfo = $result->fetch_assoc();
             $_SESSION['user_info'] = $userInfo;
         }
     }
+}
+
+if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($userInfo['tarjeta'])) {
+    $maskedCard = mask_credit_card($userInfo['tarjeta']);
 }
 
 if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($userInfo['tarjeta'])) {
