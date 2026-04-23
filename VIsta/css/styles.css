@@ -373,3 +373,113 @@ button {
     flex-shrink: 0;
     font-size: 12px;
 }
+
+/* Estilos para páginas informativas */
+.info-page {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(17, 17, 17, 0.95);
+    border-radius: 20px;
+    border-left: 6px solid red;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+.info-page h2 {
+    color: red;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.info-page h3 {
+    color: white;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.12);
+}
+
+.info-page ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.info-page ul li {
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+    color: #e0e0e0;
+}
+
+.info-page ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: red;
+}
+
+.team-card {
+    background: #111;
+    border-left: 5px solid red;
+    border-radius: 15px;
+    padding: 1.6rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.2rem;
+}
+
+.btn-action,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-action {
+    background: red;
+    color: black;
+    border-color: red;
+}
+
+.btn-action:hover {
+    filter: brightness(0.95);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border-color: red;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .info-page {
+        padding: 1.4rem;
+    }
+    .page-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

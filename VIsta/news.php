@@ -158,8 +158,14 @@
 <footer class="site-footer">
     <hr>
     <nav aria-label="Mapa del sitio">
-        <ul style="list-style: none; display: flex; justify-content: center;">
-            <li><a href="index.php">Volver a Inicio</a></li>
+        <ul style="list-style: none; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="about.php">Sobre Nosotros</a></li>
+            <li><a href="team.php">Equipo</a></li>
+            <li><a href="help.php">Ayuda</a></li>
+            <li><a href="promoter-guidelines.php">Guía de Promotores</a></li>
+            <li><a href="policies.php">Políticas</a></li>
+            <li><a href="newsletter.php">Newsletter</a></li>
         </ul>
     </nav>
 </footer>

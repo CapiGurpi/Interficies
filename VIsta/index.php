@@ -52,6 +52,17 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     </main>
   
 <footer class="site-footer">
+    <div class="footer-links">
+        <h3>Información útil</h3>
+        <ul>
+            <li><a href="about.php">Sobre Nosotros</a></li>
+            <li><a href="team.php">Equipo</a></li>
+            <li><a href="help.php">Ayuda</a></li>
+            <li><a href="promoter-guidelines.php">Guía de Promotores</a></li>
+            <li><a href="policies.php">Políticas</a></li>
+            <li><a href="newsletter.php">Newsletter</a></li>
+        </ul>
+    </div>
     <p>&copy; 2026 Next Level Sports - Accesibilidad Nivel AAA</p>
 </footer>
 </body>
