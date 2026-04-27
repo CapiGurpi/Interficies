@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Vista/config.php';
+require_once __DIR__ . '/../Vista/info/config.php';
 
 class Database {
     private $host = DB_HOST;
