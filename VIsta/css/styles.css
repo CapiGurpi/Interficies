@@ -447,17 +447,33 @@ button {
     min-width: 180px;
     padding: 1rem 1.5rem;
     border-radius: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 350;
+    letter-spacing: 2.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.12);
 }
 
 .btn-action {
     background: red;
     color: black;
     border-color: red;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.12);
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.12);
 }
 
 .btn-action:hover {
@@ -468,6 +484,14 @@ button {
     background: transparent;
     color: white;
     border-color: red;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 120;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.12);
 }
 
 .btn-secondary:hover {

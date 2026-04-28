@@ -34,7 +34,7 @@
 
             <div class="page-actions">
                 <a href="policies.php" class="btn-action">Ver Políticas</a>
-                <a href="index.php" class="btn-action btn-secondary">Volver al Inicio</a>
+                <a href="../index.php" class="btn-action btn-secondary">Volver al Inicio</a>
             </div>
         </section>
     </main>

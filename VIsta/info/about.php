@@ -32,7 +32,7 @@
             <p>Nos comprometemos a mantener contenido relevante, claro y accesible. Queremos que nuestra comunidad disfrute del deporte con confianza y facilidad.</p>
 
             <div class="page-actions">
-                <a href="index.php" class="btn-action">Volver al Inicio</a>
+                <a href="../index.php" class="btn-action">Volver al Inicio</a>
                 <a href="team.php" class="btn-action btn-secondary">Conoce al Equipo</a>
             </div>
         </section>

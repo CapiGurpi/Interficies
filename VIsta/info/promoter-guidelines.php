@@ -33,7 +33,7 @@
             <p>Publica contenido real y evita duplicidades. Usa nuestra plataforma para eventos legítimos y asegúrate de cumplir las normas de la comunidad.</p>
 
             <div class="page-actions">
-                <a href="index.php" class="btn-action">Volver al Inicio</a>
+                <a href="../index.php" class="btn-action">Volver al Inicio</a>
                 <a href="help.php" class="btn-action btn-secondary">Ver ayuda general</a>
             </div>
         </section>

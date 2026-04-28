@@ -37,7 +37,7 @@
 
             <div class="page-actions">
                 <a href="about.php" class="btn-action">Más sobre el proyecto</a>
-                <a href="index.php" class="btn-action btn-secondary">Volver al Inicio</a>
+                <a href="../index.php" class="btn-action btn-secondary">Volver al Inicio</a>
             </div>
         </section>
     </main>

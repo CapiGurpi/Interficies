@@ -42,7 +42,7 @@
 
             <div class="page-actions">
                 <a href="help.php" class="btn-action">Más ayuda</a>
-                <a href="index.php" class="btn-action btn-secondary">Volver al Inicio</a>
+                <a href="../index.php" class="btn-action btn-secondary">Volver al Inicio</a>
             </div>
         </section>
     </main>
