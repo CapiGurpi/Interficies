@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/info/auth.php';
 
 if (is_promotor()) {
     header('Location: profile_promotor.php');
