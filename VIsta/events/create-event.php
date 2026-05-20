@@ -182,7 +182,7 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
     </style>
 </head>
 <body>
-    <header>
+<header>
     <h1>Gestionar eventos deportivos</h1>
 </header>
  
@@ -251,5 +251,52 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
             </div>
         </form>
     </section>
+ 
+    <section class="event-panel">
+        <h2>Eventos registrados</h2>
+ 
+        <?php if (!$events) { ?>
+            <p>Todavia no hay eventos guardados.</p>
+        <?php } else { ?>
+            <table class="events-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Deporte</th>
+                        <th>Fecha</th>
+                        <th>Ubicacion</th>
+                        <th>Precio</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($events as $event) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($event['Id']); ?></td>
+                            <td><?php echo htmlspecialchars($event['Name']); ?></td>
+                            <td><?php echo htmlspecialchars($event['Sport']); ?></td>
+                            <td><?php echo htmlspecialchars($event['Date']); ?></td>
+                            <td><?php echo htmlspecialchars($event['Location']); ?></td>
+                            <td><?php echo htmlspecialchars(number_format((float) $event['Price'], 2)); ?> EUR</td>
+                            <td><?php echo htmlspecialchars($event['Description'] ?? ''); ?></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a class="button-link" href="create-event.php?edit=<?php echo urlencode($event['Id']); ?>">Editar</a>
+                                    <form class="inline-form" method="post" action="create-event.php" onsubmit="return confirm('Seguro que quieres eliminar este evento?');">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($event['Id']); ?>">
+                                        <button class="danger-button" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } ?>
+    </section>
+</main>
 </body>
 </html>
