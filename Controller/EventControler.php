@@ -67,3 +67,16 @@ if ($editId) {
     $stmt->execute([':id' => $editId]);
     $editingEvent = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+$stmt = $conn->query('SELECT * FROM evento ORDER BY `Date` DESC, Id DESC');
+$events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+ 
+$formValues = [
+    'Id' => $editingEvent['Id'] ?? '',
+    'Name' => $postedEvent['Name'] ?? $editingEvent['Name'] ?? '',
+    'Sport' => $postedEvent['Sport'] ?? $editingEvent['Sport'] ?? '',
+    'Date' => $postedEvent['Date'] ?? $editingEvent['Date'] ?? '',
+    'Location' => $postedEvent['Location'] ?? $editingEvent['Location'] ?? '',
+    'Price' => $postedEvent['Price'] ?? $editingEvent['Price'] ?? '',
+    'Description' => $postedEvent['Description'] ?? $editingEvent['Description'] ?? '',
+];
