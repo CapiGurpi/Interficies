@@ -182,5 +182,74 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
     </style>
 </head>
 <body>
+    <header>
+    <h1>Gestionar eventos deportivos</h1>
+</header>
+ 
+<main>
+    <?php if ($message !== '') { ?>
+        <div class="message"><?php echo htmlspecialchars($message); ?></div>
+    <?php } ?>
+ 
+    <?php if ($errors) { ?>
+        <div class="errors">
+            <?php foreach ($errors as $error) { ?>
+                <p><?php echo htmlspecialchars($error); ?></p>
+            <?php } ?>
+        </div>
+    <?php } ?>
+ 
+    <section class="event-panel">
+        <h2><?php echo $editingEvent ? 'Editar evento' : 'Crear evento'; ?></h2>
+        <form method="post" action="create-event.php">
+            <input type="hidden" name="action" value="<?php echo $editingEvent ? 'update' : 'create'; ?>">
+            <?php if ($editingEvent) { ?>
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($formValues['Id']); ?>">
+            <?php } ?>
+ 
+            <div class="event-grid">
+                <label>Nombre del evento
+                    <input type="text" name="Name" maxlength="50" value="<?php echo htmlspecialchars($formValues['Name']); ?>" required>
+                </label>
+ 
+                <label>Deporte
+                    <select name="Sport" required>
+                        <option value="">Selecciona</option>
+                        <?php
+                        $sports = ['Futbol', 'Baloncesto', 'Tenis', 'Motor', 'Atletismo', 'Natacion', 'Ciclismo', 'Otro'];
+                        foreach ($sports as $sport) {
+                            $selected = ($formValues['Sport'] === $sport) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($sport) . '" ' . $selected . '>' . htmlspecialchars($sport) . '</option>';
+                        }
+                        ?>
+                    </select>
+                </label>
+ 
+                <label>Fecha
+                    <input type="date" name="Date" value="<?php echo htmlspecialchars($formValues['Date']); ?>" required>
+                </label>
+ 
+                <label>Ubicacion
+                    <input type="text" name="Location" maxlength="100" value="<?php echo htmlspecialchars($formValues['Location']); ?>" required>
+                </label>
+ 
+                <label>Precio
+                    <input type="number" name="Price" min="0" step="0.01" value="<?php echo htmlspecialchars($formValues['Price']); ?>" required>
+                </label>
+ 
+                <label class="full-row">Descripcion
+                    <textarea name="Description" minlength="15" rows="4" required><?php echo htmlspecialchars($formValues['Description']); ?></textarea>
+                </label>
+            </div>
+ 
+            <div class="actions">
+                <button type="submit"><?php echo $editingEvent ? 'Actualizar evento' : 'Publicar evento'; ?></button>
+                <?php if ($editingEvent) { ?>
+                    <a class="button-link" href="create-event.php">Cancelar edicion</a>
+                <?php } ?>
+                <a class="button-link" href="../profile.php">Volver al perfil</a>
+            </div>
+        </form>
+    </section>
 </body>
 </html>
