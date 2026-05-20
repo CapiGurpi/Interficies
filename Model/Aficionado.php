@@ -1,10 +1,10 @@
 <?php
 class Aficionado {
-    private $FanName;
-    private $FanEmail;
-    private $FanPwd;
-    private $FanPwdCon;
-    private $FanSport;
+    public $FanName;
+    public $FanEmail;
+    public $FanPwd;
+    public $FanPwdCon;
+    public $FanSport;
 
     public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
     {

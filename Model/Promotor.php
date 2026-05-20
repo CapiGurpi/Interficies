@@ -1,11 +1,11 @@
 <?php
 class Promotor {
-    private $ProName;
-    private $ProPwd;
-    private $ProPwdCon;
-    private $ProEmail;
-    private $ProDirection;
-    private $ProCreditCard;
+    public $ProName;
+    public $ProPwd;
+    public $ProPwdCon;
+    public $ProEmail;
+    public $ProDirection;
+    public $ProCreditCard;
 
     public function __construct($ProName, $ProPwd, $ProPwdCon, $ProEmail, $ProDirection, $ProCreditCard)
     {
