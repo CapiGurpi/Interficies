@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -35,8 +39,21 @@
 </nav>
 
 <main>
+    <?php if (!empty($_SESSION['register_error']) && is_array($_SESSION['register_error'])) { ?>
+        <div class="error-container">
+            <span class="error-icon">ⓘ</span>
+            <span>
+                <?php
+                foreach ($_SESSION['register_error'] as $error) {
+                    echo htmlspecialchars($error) . "<br>";
+                }
+                ?>
+            </span>
+        </div>
+        <?php unset($_SESSION['register_error']); ?>
+    <?php } ?>
+
     <div class="registro-container">
-        
         <section>
             <form action="../Controller/UserController.php" method="post">
                 <h2 class="form-title">Registro Aficionado</h2>
@@ -68,7 +85,7 @@
                         <option>Formula 1</option>
                         <option>Boxeo</option>
                         <option>MMA</option>
-                        <option>Ciclismo</optioN>
+                        <option>Ciclismo</option>
                         <option>Natación</option>
                     </select>
                 </label>

@@ -35,6 +35,7 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     <nav class="sub-menu">
         <ul>
             <li><a href="./events/general-events.php">Eventos</a></li>
+            <li><a href="bets.php">Apuestas</a></li>
             <li><a href="news.php">Noticias</a></li>
             <li><a href="profile.php">Mi Perfil</a></li>
             <li><a href="role-selection.php">Registro</a></li>
