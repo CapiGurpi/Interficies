@@ -30,9 +30,43 @@ class UserController
         if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd']) && !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {
             $aficionado = new Aficionado($_POST['FanName'], $_POST['FanEmail'], $_POST['FanPwd'], $_POST['FanPwdCon'], $_POST['FanSport']);
             $conn = $this->db->getConnection();
-           
-            $aficionado->register($_POST['FanPwdCon'], $conn);
-        } else {
+
+        try {
+                $stmt = $conn->prepare("CALL sp_comprovar_email(:email, @result)");
+                $stmt->execute([':email' => $aficionado->getFanEmail()]);
+ 
+                $res = $conn->query("SELECT @result AS exist")->fetch(PDO::FETCH_ASSOC);
+                $exist = intval($res["exist"]);
+ 
+                if ($exist === 1) {
+                    $_SESSION['register_error'][] = "El correo electronico ya esta registrado.";
+                    header('Location: ../Vista/fan-registration.php');
+                    exit();
+                }
+ 
+                if ($aficionado->getFanPwd() !== $aficionado->getFanPwdCon()) {
+                    $_SESSION['register_error'][] = "Las contrasenas no coinciden.";
+                    header('Location: ../Vista/fan-registration.php');
+                    exit();
+                }
+ 
+                $sql = "INSERT INTO aficionado (Name, Email, Pwd, PwdCon, Sport)
+                        VALUES (:name, :email, :pwd, :pwdcon, :sport)";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([
+                    ':name'   => $aficionado->getFanName(),
+                    ':email'  => $aficionado->getFanEmail(),
+                    ':pwd'    => $aficionado->getFanPwd(),
+                    ':pwdcon' => $aficionado->getFanPwdCon(),
+                    ':sport'  => $aficionado->getFanSport()
+                ]);
+ 
+                header('Location: ../Vista/index.php');
+            } catch (PDOException $e) {
+                $_SESSION['register_error'][] = "Error en el registro: " . $e->getMessage();
+                header('Location: ../Vista/fan-registration.php');
+            }
+        }else {
             $_SESSION['register_error'][] = "No se han rellenado todos los datos.";
             header("Location: ../Vista/fan-registration.php");
         }
