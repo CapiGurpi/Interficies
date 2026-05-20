@@ -137,6 +137,48 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
             text-align: left;
             vertical-align: top;
         }
+
+        .events-table th {
+            color: red;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+ 
+        .table-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+ 
+        .inline-form {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+        
+        @media (max-width: 760px) {
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+ 
+            .events-table,
+            .events-table tbody,
+            .events-table tr,
+            .events-table td {
+                display: block;
+                width: 100%;
+            }
+ 
+            .events-table thead {
+                display: none;
+            }
+ 
+            .events-table tr {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+                padding: 0.75rem 0;
+            }
+        }
     </style>
 </head>
 <body>
