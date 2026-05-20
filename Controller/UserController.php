@@ -30,8 +30,43 @@ class UserController
         if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd']) && !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {
             $aficionado = new Aficionado($_POST['FanName'], $_POST['FanEmail'], $_POST['FanPwd'], $_POST['FanPwdCon'], $_POST['FanSport']);
             $conn = $this->db->getConnection();
-           
-            $aficionado->register($_POST['FanPwdCon'], $conn);
+
+            try {
+                $stmt = $conn->prepare("CALL sp_comprovar_email(:email, @result)");
+                $stmt->execute([':email' => $aficionado->FanEmail]);
+
+                $res = $conn->query("SELECT @result AS exist")->fetch(PDO::FETCH_ASSOC);
+                $exist = intval($res["exist"]);
+
+                if ($exist === 1) {
+                    $_SESSION['register_error'][] = "El correo electronico ya esta registrado.";
+                    header('Location: ../Vista/fan-registration.php');
+                    exit();
+                }
+
+                if ($aficionado->FanPwd !== $aficionado->FanPwdCon) {
+                    $_SESSION['register_error'][] = "Las contrasenas no coinciden.";
+                    header('Location: ../Vista/fan-registration.php');
+                    exit();
+                }
+
+                $sql = "INSERT INTO aficionado (Name, Email, Pwd, PwdCon, Sport)
+                        VALUES (:name, :email, :pwd, :pwdcon, :sport)";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([
+                    ':name'   => $aficionado->FanName,
+                    ':email'  => $aficionado->FanEmail,
+                    ':pwd'    => $aficionado->FanPwd,
+                    ':pwdcon' => $aficionado->FanPwdCon,
+                    ':sport'  => $aficionado->FanSport
+                ]);
+
+                header('Location: ../Vista/index.php');
+            } catch (PDOException $e) {
+                $_SESSION['register_error'][] = "Error en el registro: " . $e->getMessage();
+                header('Location: ../Vista/fan-registration.php');
+            }
         } else {
             $_SESSION['register_error'][] = "No se han rellenado todos los datos.";
             header("Location: ../Vista/fan-registration.php");
@@ -44,7 +79,43 @@ class UserController
         if (!empty($_POST['ProName']) && !empty($_POST['ProEmail']) && !empty($_POST['ProDirection']) && !empty($_POST['ProPwd']) && !empty($_POST['ProPwdCon']) && !empty($_POST['ProCreditCard'])) {
             $promotor = new Promotor($_POST['ProName'], $_POST['ProPwd'], $_POST['ProPwdCon'], $_POST['ProEmail'], $_POST['ProDirection'], $_POST['ProCreditCard']);
             $conn = $this->db->getConnection();
-            $promotor->registerp($_POST['ProPwdCon'], $conn);
+
+            try {
+                $stmt = $conn->prepare("CALL sp_comprovar_emailp(:email, @result)");
+                $stmt->execute([':email' => $promotor->ProEmail]);
+
+                $res = $conn->query("SELECT @result AS exist")->fetch(PDO::FETCH_ASSOC);
+                $exist = intval($res["exist"]);
+
+                if ($exist === 1) {
+                    $_SESSION['register_error'][] = "El correo electronico ya esta registrado.";
+                    header('Location: ../Vista/promoter-registration.php');
+                    exit();
+                }
+
+                if ($promotor->ProPwd !== $promotor->ProPwdCon) {
+                    $_SESSION['register_error'][] = "Las contrasenas no coinciden.";
+                    header('Location: ../Vista/promoter-registration.php');
+                    exit();
+                }
+
+                $sql = "INSERT INTO promotor (Name, Pwd, Email, Direction, CreditCard)
+                        VALUES (:name, :pwd, :email, :direction, :creditcard)";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([
+                    ':name'       => $promotor->ProName,
+                    ':pwd'        => $promotor->ProPwd,
+                    ':email'      => $promotor->ProEmail,
+                    ':direction'  => $promotor->ProDirection,
+                    ':creditcard' => $promotor->ProCreditCard
+                ]);
+
+                header('Location: ../Vista/index.php');
+            } catch (PDOException $e) {
+                $_SESSION['register_error'][] = "Error en el registro del promotor: " . $e->getMessage();
+                header('Location: ../Vista/promoter-registration.php');
+            }
         } else {
             $_SESSION['register_error'][] = "No se han rellenado todos los datos.";
             header("Location: ../Vista/promoter-registration.php");
