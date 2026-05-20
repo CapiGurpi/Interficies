@@ -34,7 +34,7 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
             margin-bottom: 2rem;
             padding: 1.5rem;
         }
-
+        
         .event-grid {
             display: grid;
             gap: 1rem;
@@ -121,7 +121,22 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
             background: rgba(255, 0, 0, 0.16);
             border: 1px solid red;
         }
-        
+        .events-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+ 
+        .events-table th,
+        .events-table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1px;
+            line-height: 1.35;
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
