@@ -162,6 +162,42 @@ class UserController
     }
 
     public function update() {}
-    public function delete() {}
+    public function delete()
+    {
+        if (!isset($_SESSION['user']) || !isset($_SESSION['user_type'])) {
+            header("Location: ../Vista/fan-login.php");
+            exit();
+        }
+
+        $email = $_SESSION['user'];
+        $tipo = $_SESSION['user_type'];
+        $conn = $this->db->getConnection();
+
+        if ($tipo === 'Aficionado') {
+            $stmt = $conn->prepare("SELECT Id FROM aficionado WHERE Email = :email");
+            $stmt->execute([':email' => $email]);
+            $id = $stmt->fetchColumn();
+
+            if ($id) {
+                $stmt = $conn->prepare("DELETE FROM entrada WHERE AficionadoId = :id");
+                $stmt->execute([':id' => $id]);
+
+                $stmt = $conn->prepare("DELETE FROM compra WHERE AficionadoId = :id");
+                $stmt->execute([':id' => $id]);
+
+                $stmt = $conn->prepare("DELETE FROM aficionado WHERE Id = :id");
+                $stmt->execute([':id' => $id]);
+            }
+        } elseif ($tipo === 'Promotor') {
+            $stmt = $conn->prepare("DELETE FROM promotor WHERE Email = :email");
+            $stmt->execute([':email' => $email]);
+        }
+
+        unset($_SESSION);
+        session_destroy();
+
+        header("Location: ../Vista/index.php");
+        exit();
+    }
 }
 ?>

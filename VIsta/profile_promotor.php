@@ -61,6 +61,8 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
         .btn-primary { background: linear-gradient(90deg, #ff0000 0%, #b30000 100%); color: white; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3); }
         .btn-secondary { background: transparent; color: white; border: 1px solid #fff; }
         .btn-secondary:hover { background: #444; color: white; }
+        .btn-danger { background: #7a0000; color: white; border: 1px solid #ff4d4d; }
+        .btn-danger:hover { background: #a00000; color: white; }
         .message { text-align: center; padding: 28px; color: white; }
     </style>
 </head>
@@ -102,6 +104,9 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
                 </div>
                 <form action="../Controller/UserController.php" method="post">
                     <button type="submit" name="logout" value="logout" class="btn-action btn-secondary">Cerrar Sesión</button>
+                </form>
+                <form action="../Controller/UserController.php" method="post" onsubmit="return confirm('Esta accion eliminara tu cuenta definitivamente. ¿Quieres continuar?');">
+                    <button type="submit" name="delete" value="delete" class="btn-action btn-danger">Eliminar Cuenta</button>
                 </form>
             <?php } ?>
         </div>

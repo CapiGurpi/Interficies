@@ -158,6 +158,17 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
 
         .btn-secondary:hover { background: #444; color: white; }
 
+        .btn-danger {
+            background: #7a0000;
+            color: white;
+            border: 1px solid #ff4d4d;
+        }
+
+        .btn-danger:hover {
+            background: #a00000;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -220,6 +231,9 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
                 <a href="events/create-event.php" class="btn-action btn-primary">+ Crear Nuevo Evento</a>
                 <form action="../Controller/UserController.php" method="post">
                     <button type="submit" name="logout" value="logout" class="btn-action btn-secondary">Cerrar Sesión</button>
+                </form>
+                <form action="../Controller/UserController.php" method="post" onsubmit="return confirm('Esta accion eliminara tu cuenta definitivamente. ¿Quieres continuar?');">
+                    <button type="submit" name="delete" value="delete" class="btn-action btn-danger">Eliminar Cuenta</button>
                 </form>
             <?php } ?>
         </div>
