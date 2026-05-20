@@ -137,6 +137,25 @@ require_once __DIR__ . '/../../Controller/EventControler.php';
             text-align: left;
             vertical-align: top;
         }
+
+        .events-table th {
+            color: red;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+ 
+        .table-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+ 
+        .inline-form {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
     </style>
 </head>
 <body>
