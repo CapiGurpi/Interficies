@@ -59,3 +59,11 @@ function ensure_event_table_schema($conn)
     }
 }
 ensure_event_table_schema($conn);
+
+$editId = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT);
+ 
+if ($editId) {
+    $stmt = $conn->prepare('SELECT * FROM evento WHERE Id = :id');
+    $stmt->execute([':id' => $editId]);
+    $editingEvent = $stmt->fetch(PDO::FETCH_ASSOC);
+}
