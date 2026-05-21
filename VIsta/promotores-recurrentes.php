@@ -76,19 +76,19 @@
     <p>&copy; 2026 Next Level Sports - Accesibilidad Nivel AAA</p>
 </footer>
 
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Slick Carousel JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <!-- jQuery Utilities JS -->
     <script src="js/jquery-utilities.js"></script>
     
     <script>
         $(document).ready(function() {
-            // Inicializar aviso de cookies
+            
             initCookiesAlert();
 
-            // Inicializar sliders con configuración responsiva
+            
             initSlider('.slider-events', {
                 responsive: [
                     {
@@ -157,10 +157,10 @@
                 arrows: true
             });
 
-            // Añadir mensaje de hover a las imágenes del slider de eventos
+            
             addImageHoverMessage('.slider-events .slider-item img', 'Haz clic para más información');
 
-            // Demo de modal
+            
             $('#demo-modal-btn').click(function() {
                 openModal(
                     'Bienvenido a Next Level Sports',
@@ -176,7 +176,7 @@
                 );
             });
 
-            // Prevenir envío de formulario si cookies no están aceptadas
+            
             $('form').submit(function(e) {
                 const STORAGE_KEY = 'cookies_accepted';
                 if (!localStorage.getItem(STORAGE_KEY)) {

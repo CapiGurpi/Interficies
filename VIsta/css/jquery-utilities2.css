@@ -1,4 +1,4 @@
-/* ===== MODAL STYLES ===== */
+
 
 .modal-overlay {
     display: none;
@@ -299,7 +299,7 @@
 
 
 
-/* ===== SLICK CAROUSEL STYLES ===== */
+
 
 .slick-slider {
 
@@ -495,7 +495,7 @@
 
 
 
-/* ===== ANIMATIONS ===== */
+
 
 @keyframes fadeIn {
 
@@ -559,7 +559,7 @@
 
 
 
-/* ===== RESPONSIVE DESIGN ===== */
+
 
 @media (max-width: 768px) {
 

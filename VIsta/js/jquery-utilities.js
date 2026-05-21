@@ -1,13 +1,8 @@
-/**
- * jQuery Utilities Library
- * Funcionalidades de Modal, Image Hover, Cookies Alert y Slick Carousel
- */
+
 
 $(document).ready(function() {
 
-    // ============================================================
-    // 1. MODAL FUNCTIONALITY
-    // ============================================================
+
     
     /**
      * Abre un modal con título, contenido y acciones
@@ -34,7 +29,7 @@ $(document).ready(function() {
         
         modalHTML += `</div></div>`;
         
-        // Eliminar modal anterior si existe
+        
         $('.modal-overlay').remove();
         
         $('body').append(modalHTML);
@@ -46,10 +41,10 @@ $(document).ready(function() {
             }
         });
         
-        // Cerrar modal al hacer clic en el botón cerrar
+        
         $('.modal-close').click(closeModal);
         
-        // Manejar clics en botones
+        
         $('.modal-btn').click(function() {
             const action = $(this).data('action');
             const callback = buttons.find(b => b.action === action)?.callback;
@@ -59,18 +54,14 @@ $(document).ready(function() {
         });
     };
     
-    /**
-     * Cierra el modal actual
-     */
+    
     window.closeModal = function() {
         $('.modal-overlay').fadeOut(300, function() {
             $(this).remove();
         });
     };
 
-    // ============================================================
-    // 2. IMAGE HOVER MESSAGE FUNCTIONALITY
-    // ============================================================
+    
     
     /**
      * Añade un mensaje flotante al pasar el ratón sobre una imagen
@@ -89,13 +80,9 @@ $(document).ready(function() {
         });
     };
 
-    // ============================================================
-    // 3. COOKIES ALERT FUNCTIONALITY
-    // ============================================================
+
     
-    /**
-     * Inicializa el aviso de cookies
-     */
+ 
     window.initCookiesAlert = function() {
         const STORAGE_KEY = 'cookies_accepted';
         
@@ -108,9 +95,7 @@ $(document).ready(function() {
             hideCookiesAlert();
         }
         
-        /**
-         * Muestra el aviso de cookies
-         */
+      
         function showCookiesAlert() {
             if ($('.cookies-alert').length === 0) {
                 const alertHTML = `
@@ -154,16 +139,12 @@ $(document).ready(function() {
             }
         }
         
-        /**
-         * Oculta el aviso de cookies
-         */
+        
         function hideCookiesAlert() {
             $('.cookies-alert').removeClass('show');
         }
         
-        /**
-         * Habilita el botón de login
-         */
+        
         function enableLoginButton() {
             const loginBtn = $('input[name="login"]');
             if (loginBtn.length) {
@@ -172,9 +153,7 @@ $(document).ready(function() {
             }
         }
         
-        /**
-         * Deshabilita el botón de login y muestra botón para aceptar cookies
-         */
+        
         function disableLoginButton() {
             const loginBtn = $('input[name="login"]');
             if (loginBtn.length) {
@@ -185,9 +164,7 @@ $(document).ready(function() {
         }
     };
 
-    // ============================================================
-    // 4. SLICK CAROUSEL FUNCTIONALITY
-    // ============================================================
+    
     
     /**
      * Inicializa un slider con Slick Carousel
@@ -262,22 +239,17 @@ $(document).ready(function() {
         initSlider(selector, options);
     };
 
-    // ============================================================
-    // 5. UTILITY FUNCTIONS
-    // ============================================================
     
-    /**
-     * Detecta cambios de tamaño de pantalla
-     */
+    
+    
     $(window).resize(function() {
-        // Puedes usar esto para reiniciar sliders si es necesario
-        // reinitSlider('.slider-events');
+        
     });
 });
 
-// Asegurarse de que se ejecute cuando el DOM esté listo
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
-        // Aquí se ejecutará el código de inicialización
+        
     });
 }

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -35,32 +39,44 @@
 </nav>
 
 <main>
-<section>
-            <form action="../Controller/UserController.php" method="post" style="border-top: 5px solid white;">
-                <h2 class="form-title">Registro Promotor</h2>
-                <label>Nombre de usuario
-                    <input type="text" name="ProName" required>
-                </label>
-                <label>Correo Electrónico
-                    <input type="text" name="ProEmail" required>
-                </label>
-                <label>Dirección
-                    <input type="text" name="ProDirection" required>
-                </label>
-                <label>Contraseña
-                    <input type="password" name="ProPwd" minlength="6">
-                </label>
-                <label>Confirmar Contraseña
-                    <input type="password" name="ProPwdCon" minlength="6">
-                </label>
-                <label>Número Tarjeta
-                    <input type="text" name="ProCreditCard"  maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
-                </label>
-                <button type="submit" style="background-color: white; color: black;" value="registerp" name="registerp">Registrar como Promotor</button>
-            </form>
-        </section>
+    <?php if (!empty($_SESSION['register_error']) && is_array($_SESSION['register_error'])) { ?>
+        <div class="error-container">
+            <span class="error-icon">ⓘ</span>
+            <span>
+                <?php
+                foreach ($_SESSION['register_error'] as $error) {
+                    echo htmlspecialchars($error) . "<br>";
+                }
+                ?>
+            </span>
+        </div>
+        <?php unset($_SESSION['register_error']); ?>
+    <?php } ?>
 
-    </div>
+    <section>
+        <form action="../Controller/UserController.php" method="post" style="border-top: 5px solid white;">
+            <h2 class="form-title">Registro Promotor</h2>
+            <label>Nombre de usuario
+                <input type="text" name="ProName" required>
+            </label>
+            <label>Correo Electrónico
+                <input type="text" name="ProEmail" required>
+            </label>
+            <label>Dirección
+                <input type="text" name="ProDirection" required>
+            </label>
+            <label>Contraseña
+                <input type="password" name="ProPwd" required minlength="6">
+            </label>
+            <label>Confirmar Contraseña
+                <input type="password" name="ProPwdCon" required minlength="6">
+            </label>
+            <label>Número Tarjeta
+                <input type="text" name="ProCreditCard" maxlength="16" placeholder="0000 0000 0000 0000" required pattern="[0-9\s]{13,19}">
+            </label>
+            <button type="submit" style="background-color: white; color: black;" value="registerp" name="registerp">Registrar como Promotor</button>
+        </form>
+    </section>
 
     <p style="text-align: center; margin-top: 2rem;">
         <a href="role-selection2.php" style="color: white; text-decoration: none;">¿Ya tienes cuenta? Entra aquí</a>

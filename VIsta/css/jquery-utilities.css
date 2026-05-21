@@ -227,76 +227,109 @@
     background: #555;
 }
 
-/* ===== SLICK CAROUSEL STYLES ===== */
-/* 1. CONTENEDOR GENERAL (El marco del carrusel) */
+
+/* 1. CONTENEDOR Y TARJETA CON ESTILO EVENTOS */
 .slider-promoters {
     position: relative;
-    padding: 0 50px; /* Espacio para las flechas laterales */
-    margin: 20px auto;
+    padding: 0 45px; 
+    margin: 40px auto;
 }
 
-/* 2. AREA DE TEXTO Y PUNTOS (Background Negro) */
-/* Añadimos este estilo para crear el recuadro negro abajo */
-.slider-item-title, 
-.slider-item-desc {
-    background-color: #000 !important; /* Fondo negro */
+.slider-promoters .slider-item {
+    background-color: #000 !important;
+    border: 1px solid red !important; /* Borde rojo fino como en eventos */
+    border-radius: 12px !important;  /* Esquinas redondeadas */
+    overflow: hidden !important;
+    margin: 10px; /* Espacio entre tarjetas */
+    display: flex !important;
+    flex-direction: column;
+}
+
+/* 2. TEXTOS (FONDO NEGRO Y TIPOGRAFÍA) */
+.slider-promoters .slider-item-title {
+    background-color: #000 !important;
+    color: red !important; /* Nombre en rojo para resaltar */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 10px 5px 10px !important;
+    font-size: 1.1rem;
+}
+
+.slider-promoters .slider-item-desc {
+    background-color: #000 !important;
     color: #fff !important;
-    margin: 0 !important; /* Quita espacios blancos entre bloques */
-    padding: 10px 15px !important;
+    padding: 0 10px 20px 10px !important;
+    font-size: 0.9rem;
+    min-height: 60px; /* Alinea los textos aunque varíe el largo */
 }
 
-/* 3. RECUADRITO NEGRO PARA LOS PUNTOS */
+/* 3. RECUADRO DE PUNTOS (DOTS) ESTILO PREMIUM */
 .slider-promoters .slick-dots {
-    background-color: #000 !important; /* Fondo negro para los puntos */
-    margin: 0 !important;
-    padding: 15px 0 !important; /* Espacio interno para que respire */
     display: flex !important;
     justify-content: center !important;
     list-style: none !important;
-    position: relative;
-    bottom: 0;
-    border-bottom-left-radius: 8px; /* Redondeado si tus tarjetas lo tienen */
-    border-bottom-right-radius: 8px;
+    margin-top: 20px !important;
+    padding: 0 !important;
+    bottom: -35px !important;
 }
 
-/* 4. AJUSTE DE FLECHAS (Para que no se muevan de su sitio) */
+.slider-promoters .slick-dots li {
+    margin: 0 6px !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+.slider-promoters .slick-dots li button {
+    font-size: 0 !important; /* Bloqueo de números */
+    color: transparent !important;
+    width: 12px !important;
+    height: 12px !important;
+    background-color: #444 !important; /* Gris oscuro */
+    border-radius: 50% !important;
+    border: none !important;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.slider-promoters .slick-dots li.slick-active button {
+    background-color: red !important;
+    transform: scale(1.2); /* Efecto de crecimiento al estar activo */
+}
+
+/* 4. FLECHAS (PROTECCIÓN TOTAL CONTRA DOBLES) */
 .slider-promoters .slick-prev, 
 .slider-promoters .slick-next {
     position: absolute;
-    top: 50% !important; /* Centrado vertical respecto a la imagen */
-    transform: translateY(-50%) !important;
-    z-index: 100 !important;
+    top: 40% !important; /* Ajustado para centrarse con la imagen, no con el texto */
     width: 40px !important;
     height: 40px !important;
     background-color: red !important;
     border-radius: 50% !important;
+    z-index: 100 !important;
     border: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     color: white !important;
-    text-indent: 0 !important;
+}
+
+/* Eliminar definitivamente la flecha residual de la librería */
+.slider-promoters .slick-prev::before, 
+.slider-promoters .slick-next::before {
+    content: none !important;
+    display: none !important;
 }
 
 .slider-promoters .slick-prev { left: 0px !important; }
 .slider-promoters .slick-next { right: 0px !important; }
 
-/* 5. ESTILO DE LOS PUNTOS (Dots) */
-.slider-promoters .slick-dots li button {
-    font-size: 0 !important;
-    width: 10px !important;
-    height: 10px !important;
-    background-color: #444 !important; /* Gris oscuro sobre el fondo negro */
-    border-radius: 50% !important;
-    border: none !important;
-    cursor: pointer !important;
+.slider-promoters .slick-prev:hover, 
+.slider-promoters .slick-next:hover {
+    background-color: #b30000 !important;
+    transform: scale(1.1) translateY(-50%) !important;
 }
 
-.slider-promoters .slick-dots li.slick-active button {
-    background-color: red !important; /* Punto rojo activo */
-}
-
-/* ===== ANIMATIONS ===== */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -328,7 +361,7 @@
     }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+
 @media (max-width: 768px) {
     .cookies-alert.show {
         flex-direction: column;

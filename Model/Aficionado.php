@@ -1,13 +1,12 @@
 <?php
 class Aficionado {
-    private $FanName;
-    private $FanEmail;
-    private $FanPwd;
-    private $FanPwdCon;
-    private $FanSport;
+    public $FanName;
+    public $FanEmail;
+    public $FanPwd;
+    public $FanPwdCon;
+    public $FanSport;
 
-
-public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
+    public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
     {
         $this->FanName = $FanName;
         $this->FanEmail = $FanEmail;
@@ -15,35 +14,29 @@ public function __construct($FanName, $FanEmail, $FanPwd, $FanPwdCon, $FanSport)
         $this->FanPwdCon = $FanPwdCon;
         $this->FanSport = $FanSport;
     }
-
-    public function register($FanPwdCon, $conn)
+public function getFanName()
     {
-        
-        $conn->query("CALL sp_comprovar_email('$this->FanEmail', @result)");
-        $result = $conn->query("SELECT @result AS exist");
-        $row = $result->fetch_assoc();
-        $exist = intval($row["exist"]);
+        return $this->FanName;
+    }
  
-        if ($exist === 1) {
-            echo "<span>El correo electrónico ya está registrado. Inténtelo con otro.</span>";
-            return;
-        }
+    public function getFanEmail()
+    {
+        return $this->FanEmail;
+    }
  
-        if ($this->FanPwd !== $FanPwdCon) {
-            echo "<span>Las contraseñas no coinciden. Inténtelo de nuevo.</span>";
-            return;
-        }
+    public function getFanPwd()
+    {
+        return $this->FanPwd;
+    }
  
-        if ($this->FanPwd === $FanPwdCon && $exist === 0) {
-             echo "<span>hola.</span>";
-            $insert = $conn->query("INSERT INTO aficionado (Name, Email, Pwd, PwdCon, Sport )
-                VALUES ('$this->FanName', '$this->FanEmail', '$this->FanPwd','$this->FanPwdCon', '$this->FanSport')");
-            header('Location: ../Vista/index.php');
-            exit();
-        }
+    public function getFanPwdCon()
+    {
+        return $this->FanPwdCon;
+    }
  
-        $result->close();
-        $conn->close();
+    public function getFanSport()
+    {
+        return $this->FanSport;
     }
 }
 ?>

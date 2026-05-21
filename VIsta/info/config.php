@@ -1,5 +1,5 @@
 <?php
-// config.php
+
 
 // Database connection constants
 define('DB_HOST', 'localhost');
@@ -14,17 +14,13 @@ define('MODEL_DIR', PROJECT_ROOT . '/Model');
 define('CONTROLLER_DIR', PROJECT_ROOT . '/Controller');
 define('VIEWS_DIR', PROJECT_ROOT . '/Vista');
 
-/**
- * Escapa contenido para salida en HTML.
- */
+
 function h(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Enmascara un número de tarjeta dejando visibles solo los últimos 4 dígitos.
- */
+
 function mask_credit_card(string $card): string
 {
     $cleanCard = preg_replace('/\D+/', '', $card);

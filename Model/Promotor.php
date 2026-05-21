@@ -1,14 +1,13 @@
 <?php
 class Promotor {
-    private $ProName;
-    private $ProPwd;
-    private $ProPwdCon;
-    private $ProEmail;
-    private $ProDirection;
-    private $ProCreditCard;
+    public $ProName;
+    public $ProPwd;
+    public $ProPwdCon;
+    public $ProEmail;
+    public $ProDirection;
+    public $ProCreditCard;
 
-
-public function __construct($ProName, $ProPwd, $ProPwdCon, $ProEmail, $ProDirection, $ProCreditCard)
+    public function __construct($ProName, $ProPwd, $ProPwdCon, $ProEmail, $ProDirection, $ProCreditCard)
     {
         $this->ProName = $ProName;
         $this->ProPwd = $ProPwd;
@@ -18,33 +17,35 @@ public function __construct($ProName, $ProPwd, $ProPwdCon, $ProEmail, $ProDirect
         $this->ProCreditCard = $ProCreditCard;
     }
 
-    public function registerp($ProPwdCon, $conn)
+    public function getProName()
     {
-        
-        $conn->query("CALL sp_comprovar_emailp('$this->ProEmail', @result)");
-        $result = $conn->query("SELECT @result AS exist");
-        $row = $result->fetch_assoc();
-        $exist = intval($row["exist"]);
- 
-        if ($exist === 1) {
-            echo "<span>El correo electrónico ya está registrado. Inténtelo con otro.</span>";
-            return;
-        }
- 
-        if ($this->ProPwd !== $ProPwdCon) {
-            echo "<span>Las contraseñas no coinciden. Inténtelo de nuevo.</span>";
-            return;
-        }
- 
-        if ($this->ProPwd === $ProPwdCon && $exist === 0) {
-            $insert = $conn->query("INSERT INTO promotor (Name, Pwd, Email, Direction, CreditCard)
-                VALUES ('$this->ProName', '$this->ProPwd', '$this->ProEmail', '$this->ProDirection', '$this->ProCreditCard')");
-            header('Location: ../Vista/index.php');
-            exit();
-        }
- 
-        $result->close();
-        $conn->close();
+        return $this->ProName;
     }
+ 
+    public function getProPwd()
+    {
+        return $this->ProPwd;
+    }
+ 
+    public function getProPwdCon()
+    {
+        return $this->ProPwdCon;
+    }
+ 
+    public function getProEmail()
+    {
+        return $this->ProEmail;
+    }
+ 
+    public function getProDirection()
+    {
+        return $this->ProDirection;
+    }
+ 
+    public function getProCreditCard()
+    {
+        return $this->ProCreditCard;
+    }
+ 
 }
 ?>

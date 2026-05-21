@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demostración de jQuery Utilities | Next Level Sports</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Slick Carousel CSS -->
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.min.css">
-    <!-- jQuery Utilities CSS -->
+    
     <link rel="stylesheet" href="css/jquery-utilities.css">
     <style>
         .demo-section {
@@ -78,7 +78,7 @@
     </header>
 
     <main>
-        <!-- DEMO 1: MODAL -->
+        
         <section class="demo-section">
             <h2>1. Modal Message (Mensaje Modal)</h2>
             <p>Crea un mensaje modal que aparece sobre un fondo transparente. Al hacer clic en el fondo se oculta.</p>
@@ -99,7 +99,7 @@ openModal('Título', 'Mensaje', [<br>
             </div>
         </section>
 
-        <!-- DEMO 2: IMAGE HOVER MESSAGE -->
+        
         <section class="demo-section">
             <h2>2. Image Hover Message (Mensaje sobre Imagen)</h2>
             <p>Muestra un mensaje flotante al pasar el ratón sobre una imagen.</p>
@@ -130,7 +130,7 @@ addImageHoverMessage('.selector-imagenes', 'Tu mensaje aquí');
             </div>
         </section>
 
-        <!-- DEMO 3: COOKIES ALERT -->
+        
         <section class="demo-section">
             <h2>3. Cookies Alert (Aviso de Cookies)</h2>
             <p>Aviso de cookies con localStorage. El usuario debe aceptar para hacer login.</p>
@@ -158,7 +158,7 @@ initCookiesAlert();
             </div>
         </section>
 
-        <!-- DEMO 4: SLIDER 1 - EVENTOS -->
+        
         <section class="demo-section">
             <h2>4. Slider 1 - Eventos/Conciertos</h2>
             <p>Carrusel responsivo de eventos con imágenes y títulos. Se adapta a 3 resoluciones diferentes.</p>
@@ -208,7 +208,7 @@ initSlider('.slider-events', {<br>
             </div>
         </section>
 
-        <!-- DEMO 5: SLIDER 2 - PROMOTORES -->
+        
         <section class="demo-section">
             <h2>5. Slider 2 - Promotores Destacados</h2>
             <p>Carrusel responsivo de promotores con información. Se adapta a 3 resoluciones diferentes.</p>
@@ -272,7 +272,7 @@ initSlider('.slider-promoters', {<br>
             </div>
         </section>
 
-        <!-- INFORMACIÓN DE RESOLUCIONES -->
+        
         <section class="demo-section">
             <h2>Configuración Responsiva de los Sliders</h2>
             <p>Los sliders se adaptan automáticamente según la resolución de pantalla:</p>
@@ -306,16 +306,16 @@ initSlider('.slider-promoters', {<br>
         </p>
     </main>
 
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Slick Carousel JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- jQuery Utilities JS -->
+    
     <script src="js/jquery-utilities.js"></script>
 
     <script>
         $(document).ready(function() {
-            // Inicializar sliders de demostración
+            
             initSlider('.slider-demo-events', {
                 slidesToShow: 4,
                 responsive: [
@@ -356,7 +356,7 @@ initSlider('.slider-promoters', {<br>
                 autoplaySpeed: 5000
             });
 
-            // DEMO MODALS
+            
             $('#modal-demo-1').click(function() {
                 openModal(
                     'Modal Simple',
@@ -414,7 +414,7 @@ initSlider('.slider-promoters', {<br>
                 );
             });
 
-            // DEMO COOKIES
+            
             $('#cookies-demo-1').click(function() {
                 localStorage.removeItem('cookies_accepted');
                 location.reload();
@@ -429,7 +429,7 @@ initSlider('.slider-promoters', {<br>
                 );
             });
 
-            // Inicializar aviso de cookies
+            
             initCookiesAlert();
         });
     </script>

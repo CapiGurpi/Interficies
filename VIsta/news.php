@@ -159,7 +159,7 @@
     <hr>
     <nav aria-label="Mapa del sitio">
         <ul style="list-style: none; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <li><a href="./info/about.php">Inicio</a></li>
+            <li><a href="./index.php">Inicio</a></li>
             <li><a href="./info/about.php">Sobre Nosotros</a></li>
             <li><a href="./info/team.php">Equipo</a></li>
             <li><a href="./info/help.php">Ayuda</a></li>

@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();
-// Reset session if requested
+
 if (isset($_GET['reset']) && $_GET['reset'] === '1') {
     unset($_SESSION['user']);
     header('Location: fan-login.php');
@@ -79,7 +79,7 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
             </button>
         </div>
 
-        <!-- SLIDER 1: Eventos/Conciertos -->
+        
         <section style="margin-top: 3rem;">
             <h3 style="text-align: center; color: red; margin-bottom: 2rem;">Eventos Próximos</h3>
             <div class="slider-events">
@@ -113,19 +113,19 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
         <?php } ?>
     </main>
 
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Slick Carousel JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- jQuery Utilities JS -->
+    
     <script src="js/jquery-utilities.js"></script>
     
     <script>
         $(document).ready(function() {
-            // Inicializar aviso de cookies
+            
             initCookiesAlert();
 
-            // Inicializar sliders con configuración responsiva
+            
             initSlider('.slider-events', {
                 responsive: [
                     {
@@ -194,7 +194,7 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
                 arrows: true
             });
 
-            // Añadir mensaje de hover a las imágenes del slider de eventos
+            
             addImageHoverMessage('.slider-events .slider-item img', 'Haz clic para más información');
 
             // Demo de modal
@@ -213,7 +213,7 @@ if (isset($_GET['reset']) && $_GET['reset'] === '1') {
                 );
             });
 
-            // Prevenir envío de formulario si cookies no están aceptadas
+            
             $('form').submit(function(e) {
                 const STORAGE_KEY = 'cookies_accepted';
                 if (!localStorage.getItem(STORAGE_KEY)) {
