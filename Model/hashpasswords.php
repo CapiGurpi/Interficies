@@ -1,6 +1,6 @@
 <?php
 /**
- * Migration script to hash existing plain text passwords
+ * Script to hash existing plain text passwords
  * Run this once after updating the database schema
  */
 
@@ -37,9 +37,9 @@ try {
         ]);
     }
 
-    echo "Migration completed successfully! All passwords have been hashed.";
+    echo "Hashing completed successfully! All passwords have been hashed.";
 
 } catch (PDOException $e) {
-    die("Migration failed: " . $e->getMessage());
+    die("Hashing failed: " . $e->getMessage());
 }
 ?>
