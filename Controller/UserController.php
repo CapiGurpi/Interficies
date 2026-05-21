@@ -32,11 +32,10 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
-                $stmt = $conn->prepare("CALL sp_comprovar_email(:email, @result)");
+                $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM aficionado WHERE Email = :email");
                 $stmt->execute([':email' => $aficionado->FanEmail]);
-
-                $res = $conn->query("SELECT @result AS exist")->fetch(PDO::FETCH_ASSOC);
-                $exist = intval($res["exist"]);
+                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                $exist = intval($res['exist']);
 
                 if ($exist === 1) {
                     $_SESSION['register_error'][] = "El correo electronico ya esta registrado.";
@@ -83,11 +82,10 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
-                $stmt = $conn->prepare("CALL sp_comprovar_emailp(:email, @result)");
+                $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM promotor WHERE Email = :email");
                 $stmt->execute([':email' => $promotor->ProEmail]);
-
-                $res = $conn->query("SELECT @result AS exist")->fetch(PDO::FETCH_ASSOC);
-                $exist = intval($res["exist"]);
+                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                $exist = intval($res['exist']);
 
                 if ($exist === 1) {
                     $_SESSION['register_error'][] = "El correo electronico ya esta registrado.";
