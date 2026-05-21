@@ -24,7 +24,7 @@ class UserController
     public function __construct() {
         $this->db = new Database();
     }
-
+    //Comprobar
     public function register()
     {
         if (!empty($_POST['FanName']) && !empty($_POST['FanEmail']) && !empty($_POST['FanPwd']) && !empty($_POST['FanPwdCon']) && !empty($_POST['FanSport'])) {
