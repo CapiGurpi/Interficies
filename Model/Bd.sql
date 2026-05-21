@@ -80,6 +80,12 @@ Pwd varchar (50) not null,
 Email varchar (100) not null  
 );
 
+-- Update password fields to support bcrypt hashes (60+ characters)
+ALTER TABLE aficionado MODIFY COLUMN Pwd VARCHAR(255) NOT NULL;
+ALTER TABLE aficionado MODIFY COLUMN PwdCon VARCHAR(255) NOT NULL;
+ALTER TABLE promotor MODIFY COLUMN Pwd VARCHAR(255) NOT NULL;
+ALTER TABLE Users MODIFY COLUMN Pwd VARCHAR(255) NOT NULL;
+
 DELIMITER //
 
 create procedure sp_comprovar_email (
