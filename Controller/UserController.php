@@ -39,8 +39,29 @@ class UserController
         return password_get_info($storedPassword)['algo'] === 0;
     }
 
+    private function ensurePasswordColumns(PDO $conn): void
+    {
+        $columns = [
+            'aficionado' => ['Pwd', 'PwdCon'],
+            'promotor' => ['Pwd'],
+        ];
+
+        foreach ($columns as $table => $tableColumns) {
+            foreach ($tableColumns as $column) {
+                $stmt = $conn->prepare("SHOW COLUMNS FROM {$table} LIKE :column");
+                $stmt->execute([':column' => $column]);
+                $info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($info && stripos($info['Type'], 'varchar(255)') === false) {
+                    $conn->exec("ALTER TABLE {$table} MODIFY COLUMN {$column} VARCHAR(255) NOT NULL");
+                }
+            }
+        }
+    }
+
     private function updatePasswordHash(PDO $conn, string $table, string $email, string $password): void
     {
+        $this->ensurePasswordColumns($conn);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         if ($table === 'aficionado') {
@@ -68,6 +89,8 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
+                $this->ensurePasswordColumns($conn);
+
                 $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM aficionado WHERE Email = :email");
                 $stmt->execute([':email' => $aficionado->FanEmail]);
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -118,6 +141,8 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
+                $this->ensurePasswordColumns($conn);
+
                 $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM promotor WHERE Email = :email");
                 $stmt->execute([':email' => $promotor->ProEmail]);
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -172,6 +197,8 @@ class UserController
 
             try {
                 // Obtener la contraseña encriptada de la base de datos
+                $this->ensurePasswordColumns($conn);
+
                 if ($userType === 'Promotor') {
                     $sql = "SELECT Pwd FROM promotor WHERE Email = :email";
                     $table = 'promotor';
@@ -234,6 +261,8 @@ class UserController
 
             try {
                 // Obtener la contraseña encriptada de la base de datos
+                $this->ensurePasswordColumns($conn);
+
                 $stmt = $conn->prepare("SELECT Pwd FROM promotor WHERE Email = :email");
                 $stmt->execute([':email' => $emailp]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
