@@ -50,6 +50,8 @@ class UserController
                     exit();
                 }
 
+                $hashedPassword = password_hash($aficionado->FanPwd, PASSWORD_DEFAULT);
+                
                 $sql = "INSERT INTO aficionado (Name, Email, Pwd, PwdCon, Sport)
                         VALUES (:name, :email, :pwd, :pwdcon, :sport)";
 
@@ -57,8 +59,8 @@ class UserController
                 $stmt->execute([
                     ':name'   => $aficionado->FanName,
                     ':email'  => $aficionado->FanEmail,
-                    ':pwd'    => $aficionado->FanPwd,
-                    ':pwdcon' => $aficionado->FanPwdCon,
+                    ':pwd'    => $hashedPassword,
+                    ':pwdcon' => $hashedPassword,
                     ':sport'  => $aficionado->FanSport
                 ]);
 
@@ -99,13 +101,15 @@ class UserController
                     exit();
                 }
 
+                $hashedPassword = password_hash($promotor->ProPwd, PASSWORD_DEFAULT);
+                
                 $sql = "INSERT INTO promotor (Name, Pwd, Email, Direction, CreditCard)
                         VALUES (:name, :pwd, :email, :direction, :creditcard)";
 
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([
                     ':name'       => $promotor->ProName,
-                    ':pwd'        => $promotor->ProPwd,
+                    ':pwd'        => $hashedPassword,
                     ':email'      => $promotor->ProEmail,
                     ':direction'  => $promotor->ProDirection,
                     ':creditcard' => $promotor->ProCreditCard
@@ -133,18 +137,19 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
-                $procedure = ($userType === 'Promotor') ? 'sp_loginp' : 'sp_login';
+                // Obtener la contraseña encriptada de la base de datos
+                if ($userType === 'Promotor') {
+                    $sql = "SELECT Pwd FROM promotor WHERE Email = :email";
+                } else {
+                    $sql = "SELECT Pwd FROM aficionado WHERE Email = :email";
+                }
                 
-                
-                $stmt = $conn->prepare("CALL $procedure(:email, :pass, @result)");
-                $stmt->bindParam(':email', $email);
-                $stmt->bindParam(':pass', $password);
-                $stmt->execute();
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([':email' => $email]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $res = $conn->query("SELECT @result AS exist")->fetch();
-                $exist = intval($res['exist']);
-
-                if ($exist === 1) {
+                // Validar contraseña con password_verify
+                if ($result && password_verify($password, $result['Pwd'])) {
                     $_SESSION['user'] = $email;
                     $_SESSION['user_type'] = $userType;
 
@@ -188,13 +193,13 @@ class UserController
             $conn = $this->db->getConnection();
 
             try {
-                $stmt = $conn->prepare("CALL sp_loginp(:email, :pass, @result)");
-                $stmt->execute([':email' => $emailp, ':pass' => $passwordp]);
+                // Obtener la contraseña encriptada de la base de datos
+                $stmt = $conn->prepare("SELECT Pwd FROM promotor WHERE Email = :email");
+                $stmt->execute([':email' => $emailp]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $res = $conn->query("SELECT @result AS exist")->fetch();
-                $exist = intval($res['exist']);
-
-                if ($exist === 1) {
+                // Validar contraseña con password_verify
+                if ($result && password_verify($passwordp, $result['Pwd'])) {
                     $_SESSION['user'] = $emailp;
                     $_SESSION['user_type'] = 'Promotor';
 
