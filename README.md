@@ -113,14 +113,14 @@ Interficies/
 
 ### For Fans
 1. Navigate to the home page
-2. Click "Registrarse" (Register) → Select "AFICIONADO"
+2. Click "Register" and choose "FAN"
 3. Fill in your details and favorite sport
 4. Browse events and purchase tickets
-5. Check out news and highlights
+5. Check the news and highlights
 
 ### For Promoters
 1. Navigate to the home page
-2. Click "Registrarse" (Register) → Select "PROMOTOR"
+2. Click "Register" and choose "PROMOTER"
 3. Complete the registration with your business details
 4. Create new events from your profile
 5. Publish news updates
@@ -128,14 +128,14 @@ Interficies/
 
 ## 👥 User Roles
 
-### Aficionado (Fan)
+### Fan
 - Browse events and news
 - Purchase tickets
 - View highlights and videos
 - Manage personal profile
 - Track favorite sports
 
-### Promotor (Promoter)
+### Promoter
 - Create and manage events
 - Publish news articles
 - Manage ticket inventory
@@ -152,7 +152,7 @@ The database schema is defined in `Model/Bd.sql`. It includes tables for:
 - User preferences
 
 **Key Models:**
-- `NextLvlBase.php` - Base database connection class
+- `NextLvlBase.php` - Database connection base class
 - `Aficionado.php` - Fan user class
 - `Promotor.php` - Promoter user class
 
@@ -171,7 +171,7 @@ The application uses MySQL for data persistence. Ensure your credentials are cor
 | Login | `role-selection2.php` → login pages | User authentication |
 | Registration | `role-selection.php` | New user signup |
 | Profile | `profile.php` | User account dashboard |
-| Tickets | `purchase/*.php` | Ticket purchase page |
+| Tickets | `purchase/*.php` | Ticket purchase pages |
 
 ## 🎨 Styling
 
@@ -182,22 +182,48 @@ All CSS files are located in the `css/` directory:
 - `news.css` - News pages
 - `incoming.css` - Upcoming events
 - `role-selection.css` - Registration flow
+- `jquery-utilities.css` - General UI utilities
+- `jquery-utilities2.css` - Additional UI utilities
 
 ## 🔒 Security Features
 
 - Password hashing for user accounts
 - Form validation on both client and server
-- Secure payment form field masking
+- Secure payment form field handling
 - SQL injection prevention through prepared statements
 - Session-based authentication
 
 ## 🌾 Supported Sports
 
-- Football (Fútbol)
-- Basketball (Baloncesto)
-- Tennis (Tenis)
-- Formula 1 (F1)
+- Football (including Champions League)
+- Basketball
+- Tennis
+- Formula 1
 - MotoGP
+- Athletics
+- Cycling
+- Swimming
+
+## ⚠️ Pending Items and Missing Features
+
+This project still has several pending improvements that should be implemented before the current release:
+
+- 🔑 Allow users to change their password
+- 🧾 Allow users to update their profile data
+- 🧪 Create and run unit tests for core features
+
+## 📌 Project Status
+
+The project currently includes:
+- Fan and promoter registration and login
+- Navigation between events, news, highlights, and ticket purchases
+- A base model-view-controller (MVC) structure
+
+However, account administration features and automated tests still need to be completed.
+
+## 📄 License
+
+This project is provided for development and learning purposes.
 - Cycling (Ciclismo)
 - Swimming (Natación)
 - Athletics (Atletismo)
