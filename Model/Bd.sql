@@ -122,32 +122,23 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE sp_login(
 	IN emailP varchar(50),
-    IN passwordP varchar(100),
-    OUT valido boolean
+    OUT pwdP varchar(255)
 )
 BEGIN
-
-	SELECT EXISTS(
-		SELECT *
-        FROM aficionado
-        WHERE email = emailP
-        AND Pwd = passwordP
-	) INTO valido;
+	SELECT Pwd INTO pwdP
+    FROM aficionado
+    WHERE email = emailP;
 END //
 DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_loginp(
 	IN emailP varchar(50),
-    IN passwordP varchar(100),
-    OUT valido boolean
+    OUT pwdP varchar(255)
 )
 BEGIN
-	SELECT EXISTS(
-		SELECT *
-        FROM promotor
-        WHERE email = emailP
-        AND Pwd = passwordP
-	) INTO valido;
+	SELECT Pwd INTO pwdP
+    FROM promotor
+    WHERE email = emailP;
 END //
 DELIMITER ;
