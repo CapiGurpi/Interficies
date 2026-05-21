@@ -51,14 +51,18 @@ try {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            $valid = password_verify($checkPassword, $user['Pwd']);
+            $isHash = password_get_info($user['Pwd'])['algo'] !== 0;
+            $valid = $isHash
+                ? password_verify($checkPassword, $user['Pwd'])
+                : hash_equals($user['Pwd'], $checkPassword);
+
             $response['sample_check'] = [
                 'table' => $table,
                 'email' => $user['Email'],
                 'id' => $user['Id'],
                 'pwd_length' => strlen($user['Pwd']),
-                'pwd_value' => $user['Pwd'],
-                'password_verify' => $valid,
+                'stored_as_hash' => $isHash,
+                'password_valid' => $valid,
             ];
         } else {
             $response['sample_check'] = [

@@ -24,6 +24,42 @@ class UserController
     public function __construct() {
         $this->db = new Database();
     }
+
+    private function isPasswordValid(string $password, string $storedPassword): bool
+    {
+        if (password_get_info($storedPassword)['algo'] !== 0) {
+            return password_verify($password, $storedPassword);
+        }
+
+        return hash_equals($storedPassword, $password);
+    }
+
+    private function needsPasswordMigration(string $storedPassword): bool
+    {
+        return password_get_info($storedPassword)['algo'] === 0;
+    }
+
+    private function updatePasswordHash(PDO $conn, string $table, string $email, string $password): void
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        if ($table === 'aficionado') {
+            $stmt = $conn->prepare("UPDATE aficionado SET Pwd = :pwd, PwdCon = :pwdcon WHERE Email = :email");
+            $stmt->execute([
+                ':pwd' => $hashedPassword,
+                ':pwdcon' => $hashedPassword,
+                ':email' => $email
+            ]);
+            return;
+        }
+
+        $stmt = $conn->prepare("UPDATE promotor SET Pwd = :pwd WHERE Email = :email");
+        $stmt->execute([
+            ':pwd' => $hashedPassword,
+            ':email' => $email
+        ]);
+    }
+
     //Comprobar
     public function register()
     {
@@ -138,16 +174,22 @@ class UserController
                 // Obtener la contraseña encriptada de la base de datos
                 if ($userType === 'Promotor') {
                     $sql = "SELECT Pwd FROM promotor WHERE Email = :email";
+                    $table = 'promotor';
                 } else {
                     $sql = "SELECT Pwd FROM aficionado WHERE Email = :email";
+                    $table = 'aficionado';
                 }
                 
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([':email' => $email]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Validar contraseña con password_verify
-                if ($result && password_verify($password, $result['Pwd'])) {
+                // Validar hashes actuales y permitir la primera entrada de cuentas antiguas.
+                if ($result && $this->isPasswordValid($password, $result['Pwd'])) {
+                    if ($this->needsPasswordMigration($result['Pwd'])) {
+                        $this->updatePasswordHash($conn, $table, $email, $password);
+                    }
+
                     $_SESSION['user'] = $email;
                     $_SESSION['user_type'] = $userType;
 
@@ -196,8 +238,12 @@ class UserController
                 $stmt->execute([':email' => $emailp]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Validar contraseña con password_verify
-                if ($result && password_verify($passwordp, $result['Pwd'])) {
+                // Validar hashes actuales y permitir la primera entrada de cuentas antiguas.
+                if ($result && $this->isPasswordValid($passwordp, $result['Pwd'])) {
+                    if ($this->needsPasswordMigration($result['Pwd'])) {
+                        $this->updatePasswordHash($conn, 'promotor', $emailp, $passwordp);
+                    }
+
                     $_SESSION['user'] = $emailp;
                     $_SESSION['user_type'] = 'Promotor';
 

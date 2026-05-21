@@ -3,8 +3,8 @@ use trabajotrans;
 create table if not exists aficionado (
 Id int (255) not null auto_increment primary key,
 Name varchar (50) not null,
-Pwd varchar (50) not null,
-PwdCon varchar (50) not null,
+Pwd varchar (255) not null,
+PwdCon varchar (255) not null,
 Email varchar (75) not null,
 Sport varchar (25) not null
 );
@@ -12,7 +12,7 @@ Sport varchar (25) not null
 create table if not exists promotor (
 Id int (255) not null auto_increment primary key,
 Name varchar (50) not null,
-Pwd varchar (50) not null,
+Pwd varchar (255) not null,
 Email varchar (75) not null,
 Direction varchar (150) not null,
 CreditCard varchar (16) not null
@@ -76,7 +76,7 @@ Description varchar (200)
 create table if not exists Users (
 Id int (255) not null auto_increment primary key,
 Name varchar (50) not null,
-Pwd varchar (50) not null,
+Pwd varchar (255) not null,
 Email varchar (100) not null  
 );
 
