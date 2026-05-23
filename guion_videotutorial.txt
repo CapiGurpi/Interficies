@@ -1,0 +1,57 @@
+Guión para videotutorial del proyecto web "Next Level Sports"
+
+Título del video: "Presentación del proyecto Next Level Sports"
+
+Grupo:
+- Gurpi
+- Canut
+- Pau
+- Roger
+
+Formato del video:
+- El vídeo será una grabación de pantalla mostrando la web.
+- No saldremos en cámara, solo habrá voz en off de cada miembro.
+
+Introducción (Duración aproximada: 30 segundos)
+- Canut: Saluda y presenta el proyecto.
+- Texto:
+  "Hola, somos Gurpi, Canut, Pau y Roger. Somos el equipo de desarrollo de Next Level Sports. En este videotutorial vamos a mostraros cómo funciona nuestra plataforma web para fans y promotores deportivos. Durante el vídeo veréis la pantalla de la web mientras os lo explicamos."
+
+Parte 1: Presentación general del proyecto (1 minuto)
+- Pau: Explica la idea principal y los roles de usuario.
+- Texto:
+  "Next Level Sports es una plataforma de gestión de eventos deportivos que conecta aficionados y promotores. Incluye funciones de registro, compra de entradas, noticias deportivas, highlights en vídeo y creación de eventos. Hay dos roles principales: el aficionado y el promotor."
+
+Parte 2: Estructura del proyecto y tecnología (1 minuto)
+- Gurpi: Describe la estructura de carpetas y el stack tecnológico.
+- Texto:
+  "El proyecto está organizado en tres carpetas principales: Controller, Model y Vista. En Controller gestionamos la lógica de usuario y autenticación. En Model tenemos las clases de datos y la conexión con la base de datos. En Vista mostramos las páginas en PHP, estilos CSS y recursos multimedia. Usamos PHP, HTML, CSS, JavaScript y MySQL con XAMPP para ejecutar la aplicación localmente."
+
+Parte 3: Registro e inicio de sesión (1 minuto)
+- Roger: Muestra el flujo de registro y login.
+- Texto:
+  "En la página de inicio el usuario puede elegir si es aficionado o promotor. El registro pide datos básicos y crea la cuenta en la base de datos. El login valida el correo y la contraseña. Para mayor seguridad, las contraseñas están hasheadas y se realiza validación en servidor."
+
+Parte 4: Funciones de aficionado (1 minuto)
+- Canut: Navega por las páginas de fan.
+- Texto:
+  "Como aficionado puedes ver eventos, leer noticias, ver highlights y comprar entradas. También puedes acceder a tu perfil personal para ver tus datos y tus deportes favoritos. Las páginas principales son index.php, news.php, highligths.php y profile.php."
+
+Parte 5: Funciones de promotor (1 minuto)
+- Gurpi: Explica el panel de promotor y creación de eventos.
+- Texto:
+  "Los promotores pueden registrarse con datos profesionales, crear y gestionar eventos deportivos, publicar noticias y controlar la venta de entradas. La parte de promotor incluye páginas como profile_promotor.php y create-event.php."
+
+Parte 6: Ejemplo práctico (1-2 minutos)
+- Canut y Roger: Hacen una demostración rápida.
+- Texto:
+  "Ahora veremos un ejemplo real. Vamos a registrar un aficionado, iniciar sesión, buscar un evento y comprar una entrada. Después mostraremos cómo un promotor crea un nuevo evento en la plataforma."
+
+Parte 7: Conclusión y cierre (30 segundos)
+- Canut: Resume el proyecto y agradece.
+- Texto:
+  "En resumen, Next Level Sports ofrece una plataforma completa para eventos deportivos, pensada tanto para fans como para promotores. Gracias por ver este videotutorial. Si tenéis alguna pregunta, podéis contactar con nosotros. ¡Hasta pronto!"
+
+Notas finales:
+- Cada miembro debe decir su parte exactamente como aparece en el guion.
+- Mostrad brevemente vuestro nombre al comenzar cada sección.
