@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['login'])) { $userController->login(); }
     if (isset($_POST['loginp'])) { $userController->loginp(); }
     if (isset($_POST['update'])) { $userController->update(); }
+    if (isset($_POST['change_password'])) { $userController->changePassword(); }
     if (isset($_POST['delete'])) { $userController->delete(); }
     if (isset($_POST['logout'])) { $userController->logout(); }
 }
@@ -388,6 +389,83 @@ class UserController
             exit();
         }
     }
+
+    public function changePassword()
+    {
+        if (!isset($_SESSION['user']) || !isset($_SESSION['user_type'])) {
+            header("Location: ../Vista/fan-login.php");
+            exit();
+        }
+
+        $email = $_SESSION['user'];
+        $tipo = $_SESSION['user_type'];
+        $newPassword = trim($_POST['new_password'] ?? '');
+        $confirmPassword = trim($_POST['confirm_password'] ?? '');
+
+        if ($newPassword === '' || $confirmPassword === '') {
+            $_SESSION['password_error'] = 'Debes completar ambos campos de contraseña.';
+            header('Location: ../Vista/change-password.php');
+            exit();
+        }
+
+        if (strlen($newPassword) < 6) {
+            $_SESSION['password_error'] = 'La contraseña debe tener al menos 6 caracteres.';
+            header('Location: ../Vista/change-password.php');
+            exit();
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $_SESSION['password_error'] = 'Las contraseñas no coinciden.';
+            header('Location: ../Vista/change-password.php');
+            exit();
+        }
+
+        $conn = $this->db->getConnection();
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        try {
+            if ($tipo === 'Aficionado') {
+                $stmt = $conn->prepare("UPDATE aficionado SET Pwd = :pwd, PwdCon = :pwdcon WHERE Email = :email");
+                $stmt->execute([
+                    ':pwd' => $hashedPassword,
+                    ':pwdcon' => $hashedPassword,
+                    ':email' => $email
+                ]);
+            } elseif ($tipo === 'Promotor') {
+                $stmt = $conn->prepare("UPDATE promotor SET Pwd = :pwd WHERE Email = :email");
+                $stmt->execute([
+                    ':pwd' => $hashedPassword,
+                    ':email' => $email
+                ]);
+            } else {
+                $_SESSION['password_error'] = 'Tipo de usuario no válido.';
+                header('Location: ../Vista/change-password.php');
+                exit();
+            }
+
+            if ($stmt->rowCount() === 0) {
+                $_SESSION['password_error'] = 'No se pudo actualizar la contraseña. Verifica tu sesión.';
+                header('Location: ../Vista/change-password.php');
+                exit();
+            }
+
+            if (!empty($_SESSION['user_info'])) {
+                $_SESSION['user_info']['pwd'] = $hashedPassword;
+                if ($tipo === 'Aficionado') {
+                    $_SESSION['user_info']['pwdcon'] = $hashedPassword;
+                }
+            }
+
+            $_SESSION['password_success'] = 'Contraseña actualizada correctamente.';
+            header('Location: ../Vista/change-password.php');
+            exit();
+        } catch (PDOException $e) {
+            $_SESSION['password_error'] = 'Error al actualizar la contraseña: ' . $e->getMessage();
+            header('Location: ../Vista/change-password.php');
+            exit();
+        }
+    }
+
     public function delete()
     {
         if (!isset($_SESSION['user']) || !isset($_SESSION['user_type'])) {
