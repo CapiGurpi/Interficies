@@ -107,8 +107,45 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
         .info-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: #ff3737;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12);
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: rgba(0, 128, 0, 0.16);
+            color: #b7ffb7;
+            border: 1px solid #39b739;
+        }
+
+        .message.error {
+            background: rgba(255, 0, 0, 0.14);
+            color: #ffb7b7;
+            border: 1px solid #ff4d4d;
         }
 
         .info-item:last-child { border: none; }
@@ -185,6 +222,14 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
 
     <main>
         <div class="profile-card">
+            <?php if (!empty($_SESSION['update_error'])) { ?>
+                <div class="message error"><?php echo htmlspecialchars($_SESSION['update_error']); ?></div>
+                <?php unset($_SESSION['update_error']); ?>
+            <?php } elseif (!empty($_SESSION['update_success'])) { ?>
+                <div class="message success"><?php echo htmlspecialchars($_SESSION['update_success']); ?></div>
+                <?php unset($_SESSION['update_success']); ?>
+            <?php } ?>
+
             <?php if (!$user || !$userInfo) { ?>
                 <div class="profile-header">
                     <h2>No hay información de usuario.</h2>
@@ -198,35 +243,23 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
                     <p>Tipo de usuario: <?php echo htmlspecialchars($userInfo['tipo']); ?></p>
                 </div>
 
-                <div class="profile-info">
-                    <div class="info-item">
-                        <span class="label">Email:</span>
-                        <span class="value"><?php echo htmlspecialchars($userInfo['email']); ?></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Contraseña:</span>
-                        <span class="value"><input class="password-input" type="password" value="<?php echo htmlspecialchars($userInfo['pwd']); ?>" readonly></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Confirmar contraseña:</span>
-                        <span class="value"><input class="password-input" type="password" value="<?php echo htmlspecialchars($userInfo['pwdcon']); ?>" readonly></span>
-                    </div>
-                    <?php if (isset($userInfo['tipo']) && strtolower(trim($userInfo['tipo'])) === 'promotor') { ?>
+                <form action="../Controller/UserController.php" method="post">
+                    <div class="profile-info">
                         <div class="info-item">
-                            <span class="label">Dirección:</span>
-                            <span class="value"><?php echo htmlspecialchars($userInfo['direccion']); ?></span>
+                            <span class="label">Nombre:</span>
+                            <span class="value"><input class="input-field" type="text" name="FanName" value="<?php echo htmlspecialchars($userInfo['nombre']); ?>" required></span>
                         </div>
                         <div class="info-item">
-                            <span class="label">Número de tarjeta:</span>
-                            <span class="value"><?php echo htmlspecialchars($maskedCard ?? $userInfo['tarjeta']); ?></span>
+                            <span class="label">Email:</span>
+                            <span class="value"><input class="input-field" type="email" name="FanEmail" value="<?php echo htmlspecialchars($userInfo['email']); ?>" required></span>
                         </div>
-                    <?php } else { ?>
                         <div class="info-item">
                             <span class="label">Deporte favorito:</span>
-                            <span class="value"><?php echo htmlspecialchars($userInfo['deporte']); ?></span>
+                            <span class="value"><input class="input-field" type="text" name="FanSport" value="<?php echo htmlspecialchars($userInfo['deporte']); ?>" required></span>
                         </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                    <button type="submit" name="update" value="update" class="btn-action btn-primary">Actualizar perfil</button>
+                </form>
 
                 <a href="events/create-event.php" class="btn-action btn-primary">+ Crear Nuevo Evento</a>
                 <form action="../Controller/UserController.php" method="post">

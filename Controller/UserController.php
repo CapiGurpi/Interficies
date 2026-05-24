@@ -281,7 +281,113 @@ class UserController
         exit();
     }
 
-    public function update() {}
+    public function update()
+    {
+        if (!isset($_SESSION['user']) || !isset($_SESSION['user_type'])) {
+            header("Location: ../Vista/fan-login.php");
+            exit();
+        }
+
+        $email = $_SESSION['user'];
+        $tipo = $_SESSION['user_type'];
+        $conn = $this->db->getConnection();
+
+        try {
+            if ($tipo === 'Aficionado') {
+                $name = trim($_POST['FanName'] ?? '');
+                $newEmail = trim($_POST['FanEmail'] ?? '');
+                $sport = trim($_POST['FanSport'] ?? '');
+
+                if ($name === '' || $newEmail === '' || $sport === '') {
+                    $_SESSION['update_error'] = 'Debes completar todos los campos para actualizar tu perfil.';
+                    header('Location: ../Vista/profile.php');
+                    exit();
+                }
+
+                if ($newEmail !== $email) {
+                    $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM aficionado WHERE Email = :email AND Email <> :current");
+                    $stmt->execute([':email' => $newEmail, ':current' => $email]);
+                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if (intval($res['exist']) > 0) {
+                        $_SESSION['update_error'] = 'El correo ya está en uso por otro aficionado.';
+                        header('Location: ../Vista/profile.php');
+                        exit();
+                    }
+                }
+
+                $stmt = $conn->prepare("UPDATE aficionado SET Name = :name, Email = :newEmail, Sport = :sport WHERE Email = :email");
+                $stmt->execute([
+                    ':name' => $name,
+                    ':newEmail' => $newEmail,
+                    ':sport' => $sport,
+                    ':email' => $email
+                ]);
+
+                $stmt = $conn->prepare("SELECT Name AS nombre, Email AS email, Sport AS deporte, 'Aficionado' AS tipo FROM aficionado WHERE Email = :email");
+                $stmt->execute([':email' => $newEmail]);
+                $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $_SESSION['user'] = $newEmail;
+                $_SESSION['user_info'] = $userInfo;
+                $_SESSION['update_success'] = 'Perfil actualizado correctamente.';
+                header('Location: ../Vista/profile.php');
+                exit();
+            }
+
+            if ($tipo === 'Promotor') {
+                $name = trim($_POST['ProName'] ?? '');
+                $newEmail = trim($_POST['ProEmail'] ?? '');
+                $direction = trim($_POST['ProDirection'] ?? '');
+                $creditCard = trim($_POST['ProCreditCard'] ?? '');
+
+                if ($name === '' || $newEmail === '' || $direction === '' || $creditCard === '') {
+                    $_SESSION['update_error'] = 'Debes completar todos los campos para actualizar tu perfil.';
+                    header('Location: ../Vista/profile_promotor.php');
+                    exit();
+                }
+
+                if ($newEmail !== $email) {
+                    $stmt = $conn->prepare("SELECT COUNT(*) AS exist FROM promotor WHERE Email = :email AND Email <> :current");
+                    $stmt->execute([':email' => $newEmail, ':current' => $email]);
+                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if (intval($res['exist']) > 0) {
+                        $_SESSION['update_error'] = 'El correo ya está en uso por otro promotor.';
+                        header('Location: ../Vista/profile_promotor.php');
+                        exit();
+                    }
+                }
+
+                $stmt = $conn->prepare("UPDATE promotor SET Name = :name, Email = :newEmail, Direction = :direction, CreditCard = :creditCard WHERE Email = :email");
+                $stmt->execute([
+                    ':name' => $name,
+                    ':newEmail' => $newEmail,
+                    ':direction' => $direction,
+                    ':creditCard' => $creditCard,
+                    ':email' => $email
+                ]);
+
+                $stmt = $conn->prepare("SELECT Name AS nombre, Email AS email, Direction AS direccion, CreditCard AS tarjeta, 'Promotor' AS tipo FROM promotor WHERE Email = :email");
+                $stmt->execute([':email' => $newEmail]);
+                $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $_SESSION['user'] = $newEmail;
+                $_SESSION['user_info'] = $userInfo;
+                $_SESSION['update_success'] = 'Perfil actualizado correctamente.';
+                header('Location: ../Vista/profile_promotor.php');
+                exit();
+            }
+
+            $_SESSION['update_error'] = 'Tipo de usuario no válido para actualizar el perfil.';
+            header('Location: ../Vista/fan-login.php');
+            exit();
+        } catch (PDOException $e) {
+            $_SESSION['update_error'] = 'Error al actualizar el perfil: ' . $e->getMessage();
+            header('Location: ' . ($tipo === 'Promotor' ? '../Vista/profile_promotor.php' : '../Vista/profile.php'));
+            exit();
+        }
+    }
     public function delete()
     {
         if (!isset($_SESSION['user']) || !isset($_SESSION['user_type'])) {

@@ -52,10 +52,15 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
         .profile-header h2 { text-transform: uppercase; color: white; font-size: 1.8rem; }
         .profile-header p { color: red; font-weight: bold; letter-spacing: 1px; }
         .profile-info { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; margin-bottom: 26px; }
-        .info-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255, 0, 0, 0.12); }
+        .info-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 0, 0, 0.12); }
         .info-item:last-child { border: none; }
         .label { color: #888; text-transform: uppercase; font-size: 0.8rem; }
-        .value { color: #fff; font-weight: bold; }
+        .value { color: #fff; font-weight: bold; width: 65%; }
+        .input-field { width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: white; padding: 10px 12px; border-radius: 6px; font-family: inherit; font-size: 0.95rem; outline: none; }
+        .input-field:focus { border-color: #ff3737; box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12); }
+        .message { margin-bottom: 20px; padding: 14px 16px; border-radius: 10px; font-weight: bold; }
+        .message.success { background: rgba(0, 128, 0, 0.16); color: #b7ffb7; border: 1px solid #39b739; }
+        .message.error { background: rgba(255, 0, 0, 0.14); color: #ffb7b7; border: 1px solid #ff4d4d; }
         .password-input { width: 100%; background: transparent; border: none; color: white; font-size: 1rem; font-family: inherit; outline: none; }
         .btn-action { display: block; width: 100%; padding: 14px; margin-top: 14px; text-align: center; text-decoration: none; font-weight: bold; text-transform: uppercase; border-radius: 5px; transition: 0.3s; cursor: pointer; border: none; }
         .btn-primary { background: linear-gradient(90deg, #ff0000 0%, #b30000 100%); color: white; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3); }
@@ -95,13 +100,23 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
                     <h2><?php echo htmlspecialchars($userInfo['nombre']); ?></h2>
                     <p>Promotor registrado</p>
                 </div>
-                <div class="profile-info">
-                    <div class="info-item"><span class="label">Email:</span><span class="value"><?php echo htmlspecialchars($userInfo['email']); ?></span></div>
-                    <div class="info-item"><span class="label">Contraseña:</span><span class="value"><input class="password-input" type="password" value="<?php echo htmlspecialchars($userInfo['pwd']); ?>" readonly></span></div>
-                    <div class="info-item"><span class="label">Confirmar contraseña:</span><span class="value"><input class="password-input" type="password" value="<?php echo htmlspecialchars($userInfo['pwdcon']); ?>" readonly></span></div>
-                    <div class="info-item"><span class="label">Dirección:</span><span class="value"><?php echo htmlspecialchars($userInfo['direccion']); ?></span></div>
-                    <div class="info-item"><span class="label">Tarjeta:</span><span class="value"><?php echo htmlspecialchars($maskedCard ?? $userInfo['tarjeta']); ?></span></div>
-                </div>
+                <?php if (!empty($_SESSION['update_error'])) { ?>
+                    <div class="message error"><?php echo htmlspecialchars($_SESSION['update_error']); ?></div>
+                    <?php unset($_SESSION['update_error']); ?>
+                <?php } elseif (!empty($_SESSION['update_success'])) { ?>
+                    <div class="message success"><?php echo htmlspecialchars($_SESSION['update_success']); ?></div>
+                    <?php unset($_SESSION['update_success']); ?>
+                <?php } ?>
+
+                <form action="../Controller/UserController.php" method="post">
+                    <div class="profile-info">
+                        <div class="info-item"><span class="label">Nombre:</span><span class="value"><input class="input-field" type="text" name="ProName" value="<?php echo htmlspecialchars($userInfo['nombre']); ?>" required></span></div>
+                        <div class="info-item"><span class="label">Email:</span><span class="value"><input class="input-field" type="email" name="ProEmail" value="<?php echo htmlspecialchars($userInfo['email']); ?>" required></span></div>
+                        <div class="info-item"><span class="label">Dirección:</span><span class="value"><input class="input-field" type="text" name="ProDirection" value="<?php echo htmlspecialchars($userInfo['direccion']); ?>" required></span></div>
+                        <div class="info-item"><span class="label">Tarjeta:</span><span class="value"><input class="input-field" type="text" name="ProCreditCard" value="<?php echo htmlspecialchars($userInfo['tarjeta']); ?>" required></span></div>
+                    </div>
+                    <button type="submit" name="update" value="update" class="btn-action btn-primary">Actualizar perfil</button>
+                </form>
                 <form action="../Controller/UserController.php" method="post">
                     <button type="submit" name="logout" value="logout" class="btn-action btn-secondary">Cerrar Sesión</button>
                 </form>
