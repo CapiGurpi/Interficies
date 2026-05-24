@@ -261,6 +261,7 @@ if ($userInfo && strtolower(trim($userInfo['tipo'])) === 'promotor' && !empty($u
                     <button type="submit" name="update" value="update" class="btn-action btn-primary">Actualizar perfil</button>
                 </form>
 
+                <a href="change-password.php" class="btn-action btn-secondary">Cambiar contraseña</a>
                 <a href="events/create-event.php" class="btn-action btn-primary">+ Crear Nuevo Evento</a>
                 <form action="../Controller/UserController.php" method="post">
                     <button type="submit" name="logout" value="logout" class="btn-action btn-secondary">Cerrar Sesión</button>
